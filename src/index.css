@@ -16,7 +16,7 @@ code {
 
 .app-tab, .message-tab, .profile-tab{
   display: grid;
-  grid-template-columns: 1fr 6fr;
+  grid-template-columns: 1fr 7fr;
   
 } 
 
@@ -35,8 +35,10 @@ code {
   .title-app{
     border: 1px solid red;
     grid-row: 1/3;
-    font-size: 20pt;
-    justify-items: center;
+    font-size: 22pt;
+    display: flex;
+    justify-content: center;
+    padding-top: 10%;
   }  
 
   .nav-link{

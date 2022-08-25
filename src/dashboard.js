@@ -12,6 +12,7 @@ const Dashboard =() => {
                 <Link to = '/' className='class-link'>Home</Link>
                 <Link to = '/profile' className='class-link'>Profile</Link>
                 <Link to = '/message' className='class-link'>Message</Link>
+                <Link to = '/signPage' className='class-link'>Sign-Page</Link> 
             </nav>
         </div>
     )
