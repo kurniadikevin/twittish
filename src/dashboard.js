@@ -14,6 +14,9 @@ const Dashboard =() => {
                 <Link to = '/message' className='class-link'>Message</Link>
                 <Link to = '/signPage' className='class-link'>Sign-Page</Link> 
             </nav>
+            <div className='profile-icon'>
+                Profile Icon
+            </div>
         </div>
     )
 }

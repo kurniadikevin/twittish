@@ -7,19 +7,20 @@ height: 100vh;
 
     .sign-box{
         border: 1px solid white;
+        border-radius: 5px;
         display: grid;
         grid-template-rows: 4fr 2fr 2fr 2fr;
         margin-top: 10%;
         width: 30%;
         aspect-ratio: 1.5;
         height: 45%;
-        
+        box-shadow: 5px 10px 18px black;
     }
 
     .sign-title{
         display: flex;
         justify-content: center;
-        padding-top: 5%;
+        padding-top: 7%;
         font-size: 28pt;
     }
 

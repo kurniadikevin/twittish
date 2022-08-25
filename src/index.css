@@ -14,11 +14,17 @@ code {
     monospace;
 }
 
-.app-tab, .message-tab, .profile-tab{
+.app-tab{
+  display: grid;
+  grid-template-columns: 1fr 5fr 2fr;
+}
+
+ .message-tab, .profile-tab{
   display: grid;
   grid-template-columns: 1fr 7fr;
   
 } 
+
 
 .app-tab>div , .message-tab>div , .profile-tab>div{
   border: 1px solid wheat;
@@ -54,5 +60,10 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid red;
+}
+
+.profile-icon{
+  grid-row: 10/11;
   border: 1px solid red;
 }
