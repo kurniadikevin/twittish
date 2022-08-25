@@ -9,7 +9,7 @@ height: 100vh;
         border: 1px solid white;
         border-radius: 5px;
         display: grid;
-        grid-template-rows: 4fr 2fr 2fr 2fr;
+        grid-template-rows: 3.5fr 1.5fr 1.5fr 1.5fr 1.5fr;
         margin-top: 10%;
         width: 30%;
         aspect-ratio: 1.5;
@@ -24,16 +24,7 @@ height: 100vh;
         font-size: 28pt;
     }
 
-    .email-cont{
-        border: 0px solid red;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10%;
-        font-size: 14pt;
-    }
-
-    .password-cont{
+    .username-cont,  .email-cont, .password-cont {
         border: 0px solid red;
         display: flex;
         flex-direction: column;
