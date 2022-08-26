@@ -33,6 +33,7 @@ code {
   border-right: 1px solid rgb(60,60,60)
 }
 
+/* DASHBOARD */
 .dashboard{
   height: 100vh;
   text-decoration: none;
@@ -73,6 +74,43 @@ code {
   gap: 10px;
 }
 
+/*POST FORM */
+.post-cont{
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  padding-left: 10%;  
+}
+
+  .post-btn{
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+
+    #post-label, #post-text{
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .post-form{
+      box-shadow: 10px 15px 15px;
+      border-radius: 10px;
+      background-color: white;
+      color: black;
+      height: 20%;
+      width: 60%;
+      margin: 0 auto;
+      display: none;
+      flex-direction: column;
+      padding-left: 15%;
+      justify-content: center;
+    }
+
+    #post-text{
+      resize: none;
+      width: 80%;
+      height: 60%;
+    }
+
 .profile-icon{
   grid-row: 10/11;
   border: 1px solid red;
@@ -80,3 +118,4 @@ code {
   justify-content: space-around;
   align-items: center;
 }
+

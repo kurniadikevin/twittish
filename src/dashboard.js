@@ -22,10 +22,17 @@ const Dashboard =() => {
       }
     });
 
+    const displayPostForm= ()=>{
+        console.log('post form activated');
+        const postForm = document.querySelector('.post-form');
+        postForm.style.display='flex';
+       
+    }
+
     return(
         <div className='dashboard'>
             <div className='title-app' >
-                <div >Twittish</div>
+                <div>Twittish</div>
             </div>
             <nav className='nav-link'>
                 <Link to = '/' className='class-link'>
@@ -42,6 +49,13 @@ const Dashboard =() => {
                     Message</Link>
                 <Link to = '/signPage' className='class-link'>Sign-Page</Link> 
             </nav>
+            <div className='post-cont'>
+                <button className='post-btn' onClick={displayPostForm}> 
+                    <span class="material-symbols-outlined">
+                        app_registration
+                    </span>
+                </button>
+            </div>
             <div className='profile-icon'>
                 <div className='profile-pic'>PP</div>
                 <div className='profile-name'>{profileName}</div>

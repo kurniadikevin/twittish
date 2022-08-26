@@ -1,5 +1,6 @@
 import Dashboard from "./dashboard";
 import Sidebar from "./sidebar";
+import PostForm from "./post-form";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
           <Dashboard/>
           <div>
             <h1>Hi i am App Home !</h1>
+            <PostForm />
           </div>
           <Sidebar/>
     </div>
