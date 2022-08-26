@@ -4,6 +4,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Dashboard =() => {
 
+    // set username
     const [ profileName,setProfileName] = useState('')
 
     const auth = getAuth();
