@@ -24,10 +24,12 @@ const Dashboard =() => {
     });
 
     const displayPostForm= ()=>{
-        console.log('post form activated');
-        const postForm = document.querySelector('.post-form');
-        postForm.style.display='flex';
-       
+            if (profileName !== 'Anon' && profileName !== 'Guest'){
+
+                console.log('post form activated');
+                const postForm = document.querySelector('.post-form');
+                postForm.style.display='flex';
+            }
     }
 
     return(

@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 const firebaseConfig = {
   apiKey: "AIzaSyBSRXhuPN8RXqWAs-h1NdMLvpYZbXfFq3c",
   authDomain: "twittish-bfec3.firebaseapp.com",
+  databaseURL: "https://twittish-bfec3-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "twittish-bfec3",
   storageBucket: "twittish-bfec3.appspot.com",
   messagingSenderId: "152077837063",

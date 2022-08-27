@@ -7,14 +7,16 @@ import { useState,useEffect } from "react";
 function App(props) {
 
   // get state profile name from firebase auth
-  const [ profileName,setProfileName] = useState('')
+  const [ profileName,setProfileName] = useState('');
+  const [ userId, setUserId] = useState('');
  
   const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
+        // User is signed in, collect have user.id and display name
         if(user.displayName){
          setProfileName('@' + user.displayName);
+         setUserId(user.uid);
         } else{
             setProfileName('Anon');
         }
@@ -29,7 +31,7 @@ function App(props) {
           <Dashboard username={profileName}/>
           <div>
             <h1>Hi i am App Home my name is {profileName}</h1>
-            <PostForm username={profileName}/>
+            <PostForm username={profileName} userId={userId}/>
           </div>
           <Sidebar/>
     </div>
