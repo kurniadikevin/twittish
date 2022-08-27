@@ -1,4 +1,4 @@
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, ref, set, get,onValue, update, push } from "firebase/database";
 
 
 const PostForm =(props) =>{
@@ -15,13 +15,25 @@ const PostForm =(props) =>{
         alert(props.userId + props.username + inputText);      
   }
 
-        function writeUserData(userId, name, textData) {
+//write
+function writeUserData(userId, name, textData) {
             const db = getDatabase();
-            set(ref(db, 'users/' + userId), {
-            username: name,
-            userText : textData
-            });
+            push(ref(db, 'users/' + userId + '/' + name), {
+            twit : textData
+            });  
         }
+
+//read
+/*
+const db = getDatabase();
+const starCountRef = ref(db, 'users/' + props.userId + '/twit');
+onValue(starCountRef, (snapshot) => {
+  const data = snapshot.val();
+  console.log('snapshotData: '+ data);
+  //updateStarCount(postElement, data);
+});
+*/
+
 
     return(
        <div className='post-form'>
