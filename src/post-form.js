@@ -1,4 +1,5 @@
-import { getDatabase, ref, set, get,onValue, update, push } from "firebase/database";
+import { getDatabase, ref, set, get,onValue,  push, on } from "firebase/database";
+import { FirebaseApp } from "firebase/app";
 
 
 const PostForm =(props) =>{
@@ -18,21 +19,14 @@ const PostForm =(props) =>{
 //write
 function writeUserData(userId, name, textData) {
             const db = getDatabase();
-            push(ref(db, 'users/' + userId + '/' + name), {
-            twit : textData
+            push(ref(db, 'post/'), {
+              userId : userId,
+              username : name,
+            twit : textData,
             });  
         }
 
-//read
-/*
-const db = getDatabase();
-const starCountRef = ref(db, 'users/' + props.userId + '/twit');
-onValue(starCountRef, (snapshot) => {
-  const data = snapshot.val();
-  console.log('snapshotData: '+ data);
-  //updateStarCount(postElement, data);
-});
-*/
+
 
 
     return(
