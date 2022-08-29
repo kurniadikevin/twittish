@@ -1,7 +1,6 @@
 import Dashboard from "./dashboard";
 import Sidebar from "./sidebar";
 import PostForm from "./post-form";
-import {appDb} from './firebase';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState,useEffect, useRef } from "react";
 import { getDatabase, ref, onValue, child, get} from "firebase/database";
@@ -11,7 +10,7 @@ function App(props) {
   // get state profile name from firebase auth
   const [ profileName,setProfileName] = useState('');
   const [ userId, setUserId] = useState('');
-  const [postData, setPostData] = useState();
+  const [postData, setPostData] = useState([]);
 
  
   const auth = getAuth();
@@ -36,25 +35,23 @@ function App(props) {
     const userTwitRef = ref(db, `post/` );
     onValue(userTwitRef, (snapshot) => {
       const data = snapshot.val();
-
       var arrData = Object.keys(data)
     .map(function(key) {
         return data[key];
     });
-      console.log(arrData);
-
-      console.log(data);
-      
+      console.log(arrData);      
       setPostData(arrData);
     });
   }
 
 
+
   useEffect(()=> {
+    
     readPost();
   },[]);
 
-  const renderListData = postData.map((item)=>
+  const renderListData =  postData.map((item)=>
         <div>
           <div>{item.username}</div>
           <div>{item.twit}</div>
@@ -68,9 +65,10 @@ function App(props) {
           <div>
             <h1>Hi i am App Home my name is {profileName}</h1>
             <PostForm username={profileName} userId={userId}/>
-            <div>
+            <div className="main-content">
              {renderListData}
             </div>
+            
 
           </div>
           <Sidebar/>
