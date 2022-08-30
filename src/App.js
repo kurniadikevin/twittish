@@ -31,30 +31,49 @@ function App(props) {
 
   //read
   const readPost =() => {
+   /* REALTIME READ ON CHANGE
     const db = getDatabase();
     const userTwitRef = ref(db, `post/` );
     onValue(userTwitRef, (snapshot) => {
-      const data = snapshot.val();
-      var arrData = Object.keys(data)
-    .map(function(key) {
-        return data[key];
+        const data = snapshot.val();
+        var arrData = Object.keys(data)
+      .map(function(key) {
+          return data[key];
+      });
+        console.log(arrData);      
+        setPostData(arrData)
     });
-      console.log(arrData);      
-      setPostData(arrData);
+    */
+
+      // READ DATA ONCE
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, 'post')).then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        var arrData = Object.keys(data).map(function(key) {
+          return data[key];
+      });
+        console.log(arrData);      
+        setPostData(arrData);
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
     });
   }
+  
 
-
-
+  
   useEffect(()=> {
-    
     readPost();
-  },[]);
+    
+  },[postData]);
 
-  const renderListData =  postData.map((item)=>
-        <div>
-          <div>{item.username}</div>
-          <div>{item.twit}</div>
+  let renderListData =  postData.map((item)=>
+        <div className="main-content">
+            <div>{item.twit}</div>
+            <div>{item.username}</div>  
         </div>
     )
 
@@ -65,9 +84,11 @@ function App(props) {
           <div>
             <h1>Hi i am App Home my name is {profileName}</h1>
             <PostForm username={profileName} userId={userId}/>
-            <div className="main-content">
-             {renderListData}
-            </div>
+              <div className="content-cont">
+              {renderListData}
+              </div>
+               
+  
             
 
           </div>

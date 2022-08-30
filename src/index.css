@@ -123,6 +123,15 @@ code {
         cursor: pointer;
       }
 
+      
+      #close-icon{
+        display: flex;
+        justify-content: flex-end;
+        height: 5px;
+        padding-right: 4%;
+        padding-bottom: 2%;
+      }
+
 .profile-icon{
   grid-row: 10/11;
   border: 1px solid red;
@@ -131,3 +140,17 @@ code {
   align-items: center;
 }
 
+/* APP */
+.content-cont{
+ padding: 20px;
+ display: flex;
+ flex-direction: column;
+ gap: 20px;
+}
+
+.main-content{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  
+}
