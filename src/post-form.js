@@ -1,6 +1,4 @@
-import { getDatabase, ref, set, get,onValue,  push, on } from "firebase/database";
-
-
+import { getDatabase, ref, set, get,onValue,  push, on, serverTimestamp } from "firebase/database";
 
 const PostForm =(props) =>{
 
@@ -14,7 +12,7 @@ const PostForm =(props) =>{
         let inputText = await myPromise;
         writeUserData(props.userId, props.username, inputText);
         alert(props.userId + props.username + inputText);
-        removePostForm();   
+        removePostForm();
   }
 
   // remove postForm
@@ -29,10 +27,13 @@ function writeUserData(userId, name, textData) {
             push(ref(db, 'post/'), {
               userId : userId,
               username : name,
-            twit : textData,
+              twit : textData,
+              createdAt :  Date(serverTimestamp())
+
             });  
         }
 
+        
 
     return(
        <div className='post-form'>

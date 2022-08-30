@@ -31,19 +31,6 @@ function App(props) {
 
   //read
   const readPost =() => {
-   /* REALTIME READ ON CHANGE
-    const db = getDatabase();
-    const userTwitRef = ref(db, `post/` );
-    onValue(userTwitRef, (snapshot) => {
-        const data = snapshot.val();
-        var arrData = Object.keys(data)
-      .map(function(key) {
-          return data[key];
-      });
-        console.log(arrData);      
-        setPostData(arrData)
-    });
-    */
 
       // READ DATA ONCE
     const dbRef = ref(getDatabase());
@@ -53,7 +40,7 @@ function App(props) {
         var arrData = Object.keys(data).map(function(key) {
           return data[key];
       });
-        console.log(arrData);      
+        //console.log(arrData);      
         setPostData(arrData);
       } else {
         console.log("No data available");
@@ -72,8 +59,9 @@ function App(props) {
 
   let renderListData =  postData.map((item)=>
         <div className="main-content">
-            <div>{item.twit}</div>
-            <div>{item.username}</div>  
+            <div className="twit-content">{item.twit}</div>
+            <div className="username-content">{item.username}</div> 
+            <div className="date-content">{item.createdAt}</div> 
         </div>
     )
 
