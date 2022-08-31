@@ -41,7 +41,7 @@ function App(props) {
           return data[key];
       });
         //console.log(arrData);      
-        setPostData(arrData);
+        setPostData(arrData.reverse());
       } else {
         console.log("No data available");
       }

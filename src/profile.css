@@ -1,0 +1,58 @@
+.profile-tab{
+    display: grid;
+     grid-template-columns: 1fr 5fr 2fr;
+}
+
+ .profile-page{
+    border: 1px solid red;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+ }
+
+    .profile-head{
+        border: 1px solid white;
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+    }
+      .profile-side{
+        display: grid;
+        grid-template-rows: 4fr 1fr;
+      }
+        .picture-cont{
+            border: 1px solid white;
+        }
+        #edit-profile{
+           width: 40px;
+           background-color: cadetblue;
+        }
+
+        .profile-main{
+            border: 1px solid white;
+            display: grid;
+            grid-template-rows: 1fr 2fr;
+        }
+        .profile-main>div{
+            border: 1px solid red;
+        }
+            .profile-name{
+
+            }
+            .profile-desc{
+
+            }
+
+    
+
+    .profile-body{
+        border: 1px solid white;
+    }
+
+
+    /*PROFILE FORM */
+    .profile-form{
+        display: none;
+        border: 1px solid red;
+        width: 50%;
+        height: 70%;
+        grid-template-rows: 1fr 2fr 3fr 2fr 1fr;
+    }

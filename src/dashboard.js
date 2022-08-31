@@ -5,7 +5,8 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 const Dashboard =() => {
 
     // set username
-    const [ profileName,setProfileName] = useState('')
+    const [ profileName,setProfileName] = useState('');
+    const [ profilePic, setProfilePic] = useState('');
 
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -19,7 +20,6 @@ const Dashboard =() => {
       } else {
         // User is signed out
        setProfileName('Guest');
-
       }
     });
 
