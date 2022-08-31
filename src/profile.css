@@ -24,6 +24,8 @@
         #edit-profile{
            width: 40px;
            background-color: cadetblue;
+           color: white;
+           cursor: pointer;
         }
 
         .profile-main{
@@ -49,10 +51,64 @@
 
 
     /*PROFILE FORM */
-    .profile-form{
+    #profile-form{
         display: none;
-        border: 1px solid red;
-        width: 50%;
+        margin: 0 auto;
+        background-color: cadetblue;
+        width: 40%;
         height: 70%;
         grid-template-rows: 1fr 2fr 3fr 2fr 1fr;
+        padding: 3%;
+        z-index: 1;
+        position: relative;
+        bottom: 40px;
+        box-shadow: 5px 10px 10px rgb(15,15,15);
     }
+        
+
+    #profile-form>div{
+        border: 1px solid cadetblue;
+        background-color: white;
+    }
+
+        .profile-header{
+            padding: 2.5% 5%;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+            #close-edit{
+                cursor: pointer;
+            }
+
+        .name-cont, .desc-cont, .pp-cont{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5%;
+        }
+            #name-input{
+                border: 1px solid cadetblue;
+                width: 75%;
+                height: 50%;
+            }
+            #desc-text{
+                resize: none;
+                width: 75%;
+                height: 100%;
+                border: 1px solid cadetblue;
+            }
+
+       
+            #add-img-btn{
+                background-color: cadetblue;
+                color: white;
+            }
+
+        #profile-form-add{
+            width: 15%;
+            height: 80%;
+            background-color: cadetblue;
+            color: white;
+            margin-top: 3%;
+        }

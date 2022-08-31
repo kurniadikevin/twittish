@@ -25,7 +25,6 @@ const Dashboard =() => {
 
     const displayPostForm= ()=>{
             if (profileName !== 'Anon' && profileName !== 'Guest'){
-
                 console.log('post form activated');
                 const postForm = document.querySelector('.post-form');
                 postForm.style.display='flex';

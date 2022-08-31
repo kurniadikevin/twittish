@@ -12,7 +12,6 @@ function App(props) {
   const [ userId, setUserId] = useState('');
   const [postData, setPostData] = useState([]);
 
- 
   const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -65,12 +64,22 @@ function App(props) {
         </div>
     )
 
+    const displayPostForm= ()=>{
+      if (profileName !== 'Anon' && profileName !== 'Guest'){
+          alert('post form activated');
+          const postForm = document.querySelector('.post-form');
+          postForm.style.display='flex';
+          const textArea = document.querySelector('#post-text');
+          textArea.value='';
+      }
+}
+
 
   return (
     <div className="app-tab">
           <Dashboard username={profileName}/>
           <div>
-            <h1>Hi i am App Home my name is {profileName}</h1>
+            <div onClick={displayPostForm} id='new-twit'>New Twit</div>
             <PostForm username={profileName} userId={userId}/>
               <div className="content-cont">
               {renderListData}

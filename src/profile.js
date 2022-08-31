@@ -30,8 +30,10 @@ const Profile = ()=> {
     });
 
     const displayProfileForm = () => {
-        const profileForm = document.querySelector('.profile-form');
+        const profileForm = document.querySelector('#profile-form'); 
         profileForm.style.display= 'grid';
+       
+
     }
 
     return(
@@ -47,14 +49,14 @@ const Profile = ()=> {
                     </div>
 
                     <div className="profile-main">
-                            <div className="profile-name">@{profileName}</div>
+                            <div className="profile-name">@{userData.displayName}</div>
                             <div className="profile-desc">profile desc</div>
                     </div>
                 </div>
 
                 <div className="profile-body">
                     <ProfileForm />
-                    body
+                
                 </div>
             </div>
 
