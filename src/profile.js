@@ -4,12 +4,14 @@ import Sidebar from "./sidebar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import ProfileForm from "./profile-form";
+import { getDatabase, ref, child, get} from "firebase/database";
 
 
 const Profile = ()=> {
 
     const [ profileName,setProfileName] = useState('');
-    const [ userData,setUserData] = useState({})
+    const [ userData,setUserData] = useState({});
+    const [ profilePost, setProfilePost] = useState([]);
 
 
     const auth = getAuth();
@@ -18,7 +20,8 @@ const Profile = ()=> {
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setUserData(user);
-         console.log(userData);
+         //console.log(user);
+        
         } else{
             setProfileName('Anon');
 
@@ -32,9 +35,41 @@ const Profile = ()=> {
     const displayProfileForm = () => {
         const profileForm = document.querySelector('#profile-form'); 
         profileForm.style.display= 'grid';
-       
-
     }
+
+
+      // READ DATA ONCE
+      const dbRef = ref(getDatabase());
+      get(child(dbRef, 'post')).then((snapshot) => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          var arrData = Object.keys(data).map(function(key) {
+            return data[key];
+            });
+          //console.log(arrData); 
+          const newData = arrData.reverse();
+          const filteredData = newData.filter((data)=>{
+            return  data.userId === userData.uid;
+        })
+        setProfilePost(filteredData);
+          
+        } else {
+          console.log("No data available");
+        }
+      }).catch((error) => {
+        console.error(error);
+      });
+
+      //render data
+      let renderListData =  profilePost.map((item)=>
+        <div className="main-content">
+            <div className="twit-content">{item.twit}</div>
+            <div className="username-content">{item.username}</div> 
+            <div className="date-content">{item.createdAt}</div> 
+        </div>
+    )
+    
+    
 
     return(
         <div className="profile-tab">
@@ -56,6 +91,9 @@ const Profile = ()=> {
 
                 <div className="profile-body">
                     <ProfileForm />
+                    <div className="content-cont">
+                      {renderListData}
+                    </div>   
                 
                 </div>
             </div>
