@@ -79,7 +79,10 @@ const Profile = ()=> {
             <div className="profile-page">
                 <div className="profile-head">
                     <div className="profile-side">
-                        <div className="picture-cont">PP</div>
+                        <div className="picture-cont">
+                          <img
+                          alt='IMG NOT LINK YET!!!'/>
+                        </div>
                         <button id="edit-profile" onClick={displayProfileForm}>Edit</button>
                     </div>
 
@@ -90,7 +93,7 @@ const Profile = ()=> {
                 </div>
 
                 <div className="profile-body">
-                    <ProfileForm />
+                    <ProfileForm uidImg={userData.uid}/>
                     <div className="content-cont">
                       {renderListData}
                     </div>   

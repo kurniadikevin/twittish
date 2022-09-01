@@ -1,11 +1,29 @@
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import storage from "./firebase";
+import { useState } from "react";
 
-const ProfileForm = () => {
+const ProfileForm = (props) => {
 
+    const [file,setFile]= useState('');
+   
     const closeProfileForm = ()=> {
         const profileForm = document.querySelector('#profile-form');
         profileForm.style.display = 'none';
-       
     }
+
+    function handleChange(event) {
+        setFile(event.target.files[0]);
+    }
+
+    function handleUpload() {
+        if (!file) {
+            alert("Please choose a file first!")
+        }
+            const storageRef = ref(storage, `/images/ProfilePicture-${props.uidImg}`);
+            alert('file uploaded');
+            uploadBytesResumable(storageRef, file);
+        }
+  
 
     return(
         <div id="profile-form">
@@ -25,7 +43,10 @@ const ProfileForm = () => {
                 </div>
                 <div className="pp-cont">
                     <label>Profile Picture</label>
-                    <button id="add-img-btn">Add image</button>
+                    <input type="file" onChange={handleChange} accept="/image/*" />
+                    <button id="add-img-btn" onClick={handleUpload} type='file' accept="/image/*">
+                        Add image</button>
+                   
                 </div>
                 <button id="profile-form-add">Add</button>
         </div>
