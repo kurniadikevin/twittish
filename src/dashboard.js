@@ -1,27 +1,40 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getDownloadURL, getStorage } from "firebase/storage";
+import { ref as sRef } from 'firebase/storage';
+import storage from "./firebase";
+
+
 
 const Dashboard =() => {
 
     // set username
     const [ profileName,setProfileName] = useState('');
-    const [ profilePic, setProfilePic] = useState('');
+    const [profPicUrl, setProfPicUrl] = useState('');
+    const [userData,setUserData]= useState();
 
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+   let unsubscribe= onAuthStateChanged(auth, (user) => {
       if (user) {
+        setUserData(user);
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setProfileName('@' + user.displayName);
+         getProfileImage();
+        
+        //console.log('loaded');
         } else{
             setProfileName('Anon');
         }
+
       } else {
         // User is signed out
        setProfileName('Guest');
       }
     });
+    unsubscribe();
+   
 
     const displayPostForm= ()=>{
             if (profileName !== 'Anon' && profileName !== 'Guest'){
@@ -30,8 +43,26 @@ const Dashboard =() => {
                 postForm.style.display='flex';
                 const textArea = document.querySelector('#post-text');
                 textArea.value='';
+                console.log(userData);
+               
             }
     }
+
+    const getProfileImage = ()=> {   
+        getDownloadURL(sRef(storage, `images/ProfilePicture-${userData.uid}`))
+         .then((url) => {
+            //console.log(url);
+            
+        setProfPicUrl(url);
+        return;
+     })
+     .catch((error) => {
+       alert('load img error');
+     });
+
+   }
+
+   //getProfileImage();
 
     return(
         <div className='dashboard'>
@@ -61,7 +92,8 @@ const Dashboard =() => {
                 </button>
             </div>
             <div className='profile-icon'>
-                <div className='profile-pic'>PP</div>
+                <div className='profile-pic'><img  alt="ppImg" id='profile-pic' src={profPicUrl} />
+                </div>
                 <div className='profile-name'>{profileName}</div>
             </div>
         </div>

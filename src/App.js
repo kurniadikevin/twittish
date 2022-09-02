@@ -13,21 +13,26 @@ function App(props) {
   const [postData, setPostData] = useState([]);
 
   const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+   let unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, collect have user.id and display name
         if(user.displayName){
          setProfileName('@' + user.displayName);
          setUserId(user.uid);
+         
         } else{
             setProfileName('Anon');
-        }
+            console.log('loaded');
+           }
+          
       } else {
         // User is signed out
        setProfileName('Guest');
       }
     });
-
+    
+      unsubscribe();
+  
   //read
   const readPost =() => {
 

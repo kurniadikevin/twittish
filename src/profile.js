@@ -16,26 +16,25 @@ const Profile = ()=> {
     const [ profileName,setProfileName] = useState('');
     const [ userData,setUserData] = useState({});
     const [ profilePost, setProfilePost] = useState([]);
-    //const [PPurl, setPPUrl] = useState('');
+    const [PPurl, setPPUrl] = useState('');
 
     // authentication
     const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
+   let unsubscribe=  onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setUserData(user);
-         //console.log(user);
-        
+         //console.log(user);  
         } else{
             setProfileName('Anon');
           }
-
       } else {
         // User is signed out
        setProfileName('Guest');
       }
     });
+    unsubscribe();
 
     // display form dom
     const displayProfileForm = () => {
@@ -76,19 +75,21 @@ const Profile = ()=> {
     )
     
     // Find url for profile picture
-    const getProfileImage = ()=> {
-      
+    const getProfileImage = ()=> {   
      getDownloadURL(sRef(storage, `images/ProfilePicture-${userData.uid}`))
       .then((url) => {
       // Or inserted into an <img> element
     const img = document.getElementById('user-PP');
+    const imgDash = document.getElementById('profile-pic');
     img.setAttribute('src', null);
     img.setAttribute('src', url);
+    imgDash.setAttribute('src', null);
+    imgDash.setAttribute('src', url);
+    setPPUrl(url);
   })
   .catch((error) => {
     // Handle any errors
     alert('load img error');
-    
   });
 }
 
@@ -96,10 +97,11 @@ const Profile = ()=> {
     getProfileImage(); 
   },[userData.uid]);
 
+  
     return(
         <div className="profile-tab">
 
-            <Dashboard/>
+            <Dashboard  />
 
             <div className="profile-page">
                 <div className="profile-head">
@@ -113,7 +115,7 @@ const Profile = ()=> {
 
                     <div className="profile-main">
                             <div className="profile-name">@{userData.displayName}</div>
-                            <div className="profile-desc">profile desc</div>
+                            <div className="profile-desc">profile desc  </div>
                     </div>
                 </div>
 
