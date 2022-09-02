@@ -2,9 +2,13 @@ import Dashboard from "./dashboard";
 import './profile.css';
 import Sidebar from "./sidebar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileForm from "./profile-form";
 import { getDatabase, ref, child, get} from "firebase/database";
+import { getDownloadURL, getStorage } from "firebase/storage";
+import { ref as sRef } from 'firebase/storage';
+import storage from "./firebase";
+
 
 
 const Profile = ()=> {
@@ -12,8 +16,9 @@ const Profile = ()=> {
     const [ profileName,setProfileName] = useState('');
     const [ userData,setUserData] = useState({});
     const [ profilePost, setProfilePost] = useState([]);
+    //const [PPurl, setPPUrl] = useState('');
 
-
+    // authentication
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -24,21 +29,22 @@ const Profile = ()=> {
         
         } else{
             setProfileName('Anon');
+          }
 
-        }
       } else {
         // User is signed out
        setProfileName('Guest');
       }
     });
 
+    // display form dom
     const displayProfileForm = () => {
         const profileForm = document.querySelector('#profile-form'); 
         profileForm.style.display= 'grid';
     }
 
 
-      // READ DATA ONCE
+      // Read data for profile home
       const dbRef = ref(getDatabase());
       get(child(dbRef, 'post')).then((snapshot) => {
         if (snapshot.exists()) {
@@ -69,7 +75,26 @@ const Profile = ()=> {
         </div>
     )
     
+    // Find url for profile picture
+    const getProfileImage = ()=> {
+      
+     getDownloadURL(sRef(storage, `images/ProfilePicture-${userData.uid}`))
+      .then((url) => {
+      // Or inserted into an <img> element
+    const img = document.getElementById('user-PP');
+    img.setAttribute('src', null);
+    img.setAttribute('src', url);
+  })
+  .catch((error) => {
+    // Handle any errors
+    alert('load img error');
     
+  });
+}
+
+  useEffect(()=>{
+    getProfileImage(); 
+  },[userData.uid]);
 
     return(
         <div className="profile-tab">
@@ -80,7 +105,7 @@ const Profile = ()=> {
                 <div className="profile-head">
                     <div className="profile-side">
                         <div className="picture-cont">
-                          <img
+                          <img id="user-PP"
                           alt='IMG NOT LINK YET!!!'/>
                         </div>
                         <button id="edit-profile" onClick={displayProfileForm}>Edit</button>

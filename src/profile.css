@@ -87,6 +87,11 @@
             justify-content: space-between;
             padding: 5%;
         }
+
+            #user-PP{
+                width: 100px;
+                height: 100px;
+            }
             #name-input{
                 border: 1px solid cadetblue;
                 width: 75%;
