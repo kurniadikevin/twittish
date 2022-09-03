@@ -84,6 +84,15 @@ span{
     height: 50px;
   }
 
+
+.profile-icon{
+  grid-row: 10/11;
+  border-top: 1px solid rgb(60,60,60);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 /*POST FORM */
 .post-cont{
   border: 0px solid red;
@@ -146,20 +155,13 @@ span{
         cursor: pointer;
       }
 
-.profile-icon{
-  grid-row: 10/11;
-  border: 1px solid red;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
 
 /* APP */
 .content-cont{
  padding: 20px;
  display: flex;
  flex-direction: column;
- gap: 40px;
+ gap: 10px;
 }
 
 #new-twit{
@@ -194,4 +196,10 @@ span{
 
   .date-content{
     font-size: 8pt;
+  }
+
+  .icon-cont>span{
+    padding-right: 20px;
+    padding-top: 10px;
+    font-size: 14pt;
   }

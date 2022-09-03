@@ -69,6 +69,17 @@ function App(props) {
             <div className="twit-content">{item.twit}</div>
             <div className="username-content">{item.username}</div> 
             <div className="date-content">{item.createdAt}</div> 
+            <div className="icon-cont">
+                <span class="material-symbols-outlined">
+                  favorite
+                  </span>
+                  <span class="material-symbols-outlined">
+                  reply
+                  </span>
+                  <span class="material-symbols-outlined">
+                  repeat
+                  </span>
+            </div>
         </div>
     )
 
