@@ -7,13 +7,14 @@ import storage from "./firebase";
 
 
 
-const Dashboard =() => {
+const Dashboard =(props) => {
 
     // set username
     const [ profileName,setProfileName] = useState('');
-    //const [profPicUrl, setProfPicUrl] = useState('');
+    const [profPicUrl, setProfPicUrl] = useState('');
     const [userData,setUserData]= useState();
 
+   
     const auth = getAuth();
    
      onAuthStateChanged(auth, (user) => {
@@ -53,10 +54,11 @@ const Dashboard =() => {
     const getProfileImage = ()=> {   
         getDownloadURL(sRef(storage, `images/ProfilePicture-${userData.uid}`))
          .then((url) => {
-        console.log(url); 
+        //console.log(url); 
             
-        //setProfPicUrl(url);
+        props.func(url);
         const imgDash = document.getElementById('profile-pic');
+        
         imgDash.setAttribute('src', null);
         imgDash.setAttribute('src', url);
         sRef.off();

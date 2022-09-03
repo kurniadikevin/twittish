@@ -4,7 +4,7 @@ import Sidebar from "./sidebar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import ProfileForm from "./profile-form";
-import { getDatabase, ref, child, get} from "firebase/database";
+import { getDatabase, ref, child, get, off} from "firebase/database";
 import { getDownloadURL, getStorage } from "firebase/storage";
 import { ref as sRef } from 'firebase/storage';
 import storage from "./firebase";
@@ -50,6 +50,7 @@ const Profile = ()=> {
           const data = snapshot.val();
           var arrData = Object.keys(data).map(function(key) {
             return data[key];
+
             });
           //console.log(arrData); 
           const newData = arrData.reverse();
@@ -74,40 +75,23 @@ const Profile = ()=> {
         </div>
     )
     
-    // Find url for profile picture
-    const getProfileImage = ()=> {   
-     getDownloadURL(sRef(storage, `images/ProfilePicture-${userData.uid}`))
-      .then((url) => {
-      // Or inserted into an <img> element
-    const img = document.getElementById('user-PP');
-    const imgDash = document.getElementById('profile-pic');
-    img.setAttribute('src', null);
-    img.setAttribute('src', url);
-    //imgDash.setAttribute('src', null);
-    //imgDash.setAttribute('src', url);
-    setPPUrl(url);
-  })
-  .catch((error) => {
-    // Handle any errors
-    alert('load img error');
-  });
-}
-
-  useEffect(()=>{
-    getProfileImage(); 
-  },[userData.uid]);
+   
+  const pull_data = (data) => {
+    setPPUrl(data); // LOGS DATA FROM CHILD (My name is Dean Winchester... &)
+  }
 
   
+
     return(
         <div className="profile-tab">
 
-            <Dashboard  />
+            <Dashboard  func={pull_data}/>
 
             <div className="profile-page">
                 <div className="profile-head">
                     <div className="profile-side">
                         <div className="picture-cont">
-                          <img id="user-PP"
+                          <img id="profile-pic" src={PPurl}
                           alt='IMG NOT LINK YET!!!'/>
                         </div>
                         <button id="edit-profile" onClick={displayProfileForm}>Edit</button>
