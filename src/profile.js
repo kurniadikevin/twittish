@@ -83,8 +83,8 @@ const Profile = ()=> {
     const imgDash = document.getElementById('profile-pic');
     img.setAttribute('src', null);
     img.setAttribute('src', url);
-    imgDash.setAttribute('src', null);
-    imgDash.setAttribute('src', url);
+    //imgDash.setAttribute('src', null);
+    //imgDash.setAttribute('src', url);
     setPPUrl(url);
   })
   .catch((error) => {

@@ -13,7 +13,7 @@ function App(props) {
   const [postData, setPostData] = useState([]);
 
   const auth = getAuth();
-   let unsubscribe = onAuthStateChanged(auth, (user) => {
+   const getAuthFunc = onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, collect have user.id and display name
         if(user.displayName){
@@ -22,7 +22,7 @@ function App(props) {
          
         } else{
             setProfileName('Anon');
-            console.log('loaded');
+            //alert('loaded');
            }
           
       } else {
@@ -31,7 +31,8 @@ function App(props) {
       }
     });
     
-      unsubscribe();
+  
+    
   
   //read
   const readPost =() => {
@@ -44,7 +45,7 @@ function App(props) {
         var arrData = Object.keys(data).map(function(key) {
           return data[key];
       });
-        //console.log(arrData);      
+//alert(arrData);      
         setPostData(arrData.reverse());
       } else {
         console.log("No data available");
@@ -57,9 +58,11 @@ function App(props) {
 
   
   useEffect(()=> {
-    readPost();
     
-  },[postData]);
+    readPost();
+    getAuthFunc();
+    return readPost(); 
+  },[]);
 
   let renderListData =  postData.map((item)=>
         <div className="main-content">

@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getDownloadURL, getStorage } from "firebase/storage";
+import { getDownloadURL, getStorage,} from "firebase/storage";
 import { ref as sRef } from 'firebase/storage';
 import storage from "./firebase";
 
@@ -11,19 +11,20 @@ const Dashboard =() => {
 
     // set username
     const [ profileName,setProfileName] = useState('');
-    const [profPicUrl, setProfPicUrl] = useState('');
+    //const [profPicUrl, setProfPicUrl] = useState('');
     const [userData,setUserData]= useState();
 
     const auth = getAuth();
-   let unsubscribe= onAuthStateChanged(auth, (user) => {
+   
+     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserData(user);
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setProfileName('@' + user.displayName);
          getProfileImage();
-        
-        //console.log('loaded');
+         
+         //alert('loaded');
         } else{
             setProfileName('Anon');
         }
@@ -33,7 +34,8 @@ const Dashboard =() => {
        setProfileName('Guest');
       }
     });
-    unsubscribe();
+  
+
    
 
     const displayPostForm= ()=>{
@@ -51,18 +53,27 @@ const Dashboard =() => {
     const getProfileImage = ()=> {   
         getDownloadURL(sRef(storage, `images/ProfilePicture-${userData.uid}`))
          .then((url) => {
-            //console.log(url);
+        console.log(url); 
             
-        setProfPicUrl(url);
-        return;
+        //setProfPicUrl(url);
+        const imgDash = document.getElementById('profile-pic');
+        imgDash.setAttribute('src', null);
+        imgDash.setAttribute('src', url);
+        sRef.off();
      })
      .catch((error) => {
-       alert('load img error');
+      //alert('load img error');
+       
      });
 
    }
 
    //getProfileImage();
+   useEffect(()=>{
+   
+    
+    
+   },[])
 
     return(
         <div className='dashboard'>
@@ -92,7 +103,7 @@ const Dashboard =() => {
                 </button>
             </div>
             <div className='profile-icon'>
-                <div className='profile-pic'><img  alt="ppImg" id='profile-pic' src={profPicUrl} />
+                <div className='profile-pic'><img  alt="ppImg" id='profile-pic'  />
                 </div>
                 <div className='profile-name'>{profileName}</div>
             </div>
