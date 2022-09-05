@@ -60,6 +60,8 @@ const Dashboard =(props) => {
         props.func(url);
         setProfPicUrl(url);
         const imgDash = document.getElementById('profile-pic');
+        const loader = document.querySelector('#lds-roller-dash');
+        loader.style.display='none'
         imgDash.setAttribute('src', null);
         imgDash.setAttribute('src', url);
         imgDash.style.display='block';
@@ -110,7 +112,8 @@ const Dashboard =(props) => {
             </div>
             <div className='profile-icon'>
                 <div className='profile-pic'><img  alt="ppImg" id='profile-pic'  />
-                
+                <div class="lds-roller" id='lds-roller-dash'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+
                 
                 </div>
                 <div className='profile-name'>{profileName}</div>

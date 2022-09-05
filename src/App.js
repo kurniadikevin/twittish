@@ -90,11 +90,13 @@ function App(props) {
 
     const displayPostForm= ()=>{
       if (profileName !== 'Anon' && profileName !== 'Guest'){
-          alert('post form activated');
+          //alert('post form activated');
           const postForm = document.querySelector('.post-form');
           postForm.style.display='flex';
           const textArea = document.querySelector('#post-text');
           textArea.value='';
+          const profileTab = document.querySelector('.app-tab');
+          profileTab.style.background='rgb(100,100,100,0.5)';
       }
 }
 

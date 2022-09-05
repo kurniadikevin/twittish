@@ -9,6 +9,8 @@ const ProfileForm = (props) => {
     const closeProfileForm = ()=> {
         const profileForm = document.querySelector('#profile-form');
         profileForm.style.display = 'none';
+        const profileTab = document.querySelector('.profile-tab');
+        profileTab.style.background='rgb(30,30,30)';
     }
 
     function handleChange(event) {

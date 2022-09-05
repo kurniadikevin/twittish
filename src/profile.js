@@ -40,6 +40,9 @@ const Profile = ()=> {
     const displayProfileForm = () => {
         const profileForm = document.querySelector('#profile-form'); 
         profileForm.style.display= 'grid';
+        const profileTab = document.querySelector('.profile-tab');
+        profileTab.style.background='rgb(100,100,100,0.5)';
+        //profileTab.style.opacity='0.1';
     }
 
 

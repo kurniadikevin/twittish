@@ -7,7 +7,7 @@ const Message = ()=> {
         <div className="message-tab">
             <Dashboard/>
             <div>
-                <h1>I am Message</h1>
+                <h1>Under Construction .....</h1>
             </div>
 
         </div>

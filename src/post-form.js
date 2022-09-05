@@ -19,7 +19,10 @@ const PostForm =(props) =>{
     const removePostForm = ()=> {
       const postForm = document.querySelector('.post-form');
       postForm.style.display= 'none'; // disable post form after publish twit      
+      const profileTab = document.querySelector('.app-tab');
+      profileTab.style.background='rgb(30,30,30)';
     }
+
 
 //write
 function writeUserData(userId, name, textData) {
