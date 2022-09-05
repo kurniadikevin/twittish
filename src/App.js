@@ -4,6 +4,7 @@ import PostForm from "./post-form";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState,useEffect, useRef } from "react";
 import { getDatabase, ref, onValue, child, get} from "firebase/database";
+import './loader.css';
 
 function App(props) {
 
@@ -11,6 +12,7 @@ function App(props) {
   const [ profileName,setProfileName] = useState('');
   const [ userId, setUserId] = useState('');
   const [postData, setPostData] = useState([]);
+
 
   const auth = getAuth();
    const getAuthFunc = onAuthStateChanged(auth, (user) => {
@@ -44,9 +46,12 @@ function App(props) {
         const data = snapshot.val();
         var arrData = Object.keys(data).map(function(key) {
           return data[key];
+          
       });
-//alert(arrData);      
+      //alert(arrData);      
         setPostData(arrData.reverse());
+        const loader = document.querySelector('.lds-roller');
+        loader.style.display='none';
       } else {
         console.log("No data available");
       }
@@ -94,15 +99,17 @@ function App(props) {
 }
 
 
+
   return (
     <div className="app-tab">
-          <Dashboard username={profileName}/>
+          <Dashboard />
           <div>
             <div onClick={displayPostForm} id='new-twit'>New Twit</div>
             <PostForm username={profileName} userId={userId}/>
               <div className="content-cont">
               {renderListData}
               </div>
+              <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                
   
             

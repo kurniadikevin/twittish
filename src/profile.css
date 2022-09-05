@@ -4,22 +4,25 @@
 }
 
  .profile-page{
-    border: 1px solid red;
+    border: 0px solid red;
     display: grid;
-    grid-template-rows: 1fr 4fr;
+    grid-template-rows: 1fr 6fr;
  }
 
     .profile-head{
         border: 1px solid white;
         display: grid;
-        grid-template-columns: 1fr 4fr;
+        grid-template-columns: 1fr 5fr;
+        
     }
       .profile-side{
         display: grid;
         grid-template-rows: 4fr 1fr;
       }
         .picture-cont{
-            border: 1px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         #edit-profile{
            width: 40px;
@@ -29,21 +32,19 @@
         }
 
         .profile-main{
-            border: 1px solid white;
+            border: 0px solid white;
             display: grid;
             grid-template-rows: 1fr 2fr;
         }
         .profile-main>div{
             border: 1px solid red;
         }
-            .profile-name{
-
+         
+        
+            #profile-pic-prof{
+                width: 125px;
+                height: 125px;
             }
-            .profile-desc{
-
-            }
-
-    
 
     .profile-body{
         border: 1px solid white;
@@ -56,7 +57,7 @@
         margin: 0 auto;
         background-color: cadetblue;
         width: 40%;
-        height: 70%;
+        height: 40%;
         grid-template-rows: 1fr 2fr 3fr 2fr 1fr;
         padding: 3%;
         z-index: 1;

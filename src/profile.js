@@ -20,12 +20,12 @@ const Profile = ()=> {
 
     // authentication
     const auth = getAuth();
-   let unsubscribe=  onAuthStateChanged(auth, (user) => {
+    const authFunc = ()=> onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setUserData(user);
-         //console.log(user);  
+         console.log('user');  
         } else{
             setProfileName('Anon');
           }
@@ -34,7 +34,7 @@ const Profile = ()=> {
        setProfileName('Guest');
       }
     });
-    unsubscribe();
+
 
     // display form dom
     const displayProfileForm = () => {
@@ -45,26 +45,35 @@ const Profile = ()=> {
 
       // Read data for profile home
       const dbRef = ref(getDatabase());
+      const readFunc = () => {
       get(child(dbRef, 'post')).then((snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.val();
           var arrData = Object.keys(data).map(function(key) {
             return data[key];
-
             });
-          //console.log(arrData); 
+          console.log('arrData'); 
           const newData = arrData.reverse();
           const filteredData = newData.filter((data)=>{
             return  data.userId === userData.uid;
         })
         setProfilePost(filteredData);
-          
+        //loader
+        const loader = document.querySelector('.lds-roller');
+        loader.style.display='none';  
+
         } else {
           console.log("No data available");
         }
       }).catch((error) => {
         console.error(error);
       });
+    }
+
+    useEffect(()=> {
+      authFunc();
+      readFunc();
+    },[userData])
 
       //render data
       let renderListData =  profilePost.map((item)=>
@@ -88,7 +97,7 @@ const Profile = ()=> {
     
    
   const pull_data = (data) => {
-    setPPUrl(data); // LOGS DATA FROM CHILD (My name is Dean Winchester... &)
+    setPPUrl(data); // LOGS DATA FROM CHILD profile
   }
 
   
@@ -102,7 +111,7 @@ const Profile = ()=> {
                 <div className="profile-head">
                     <div className="profile-side">
                         <div className="picture-cont">
-                          <img id="profile-pic" src={PPurl}
+                          <img id="profile-pic-prof" src={PPurl}
                           alt='IMG NOT LINK YET!!!'/>
                         </div>
                         <button id="edit-profile" onClick={displayProfileForm}>Edit</button>
@@ -115,10 +124,12 @@ const Profile = ()=> {
                 </div>
 
                 <div className="profile-body">
-                    <ProfileForm uidImg={userData.uid}/>
+                    <ProfileForm uidImg={userData.uid} />
                     <div className="content-cont">
                       {renderListData}
-                    </div>   
+                    </div>
+                    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+   
                 
                 </div>
             </div>

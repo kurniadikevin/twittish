@@ -17,15 +17,17 @@ const Dashboard =(props) => {
    
     const auth = getAuth();
    
+    const authFunc = () =>{
      onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserData(user);
+        console.log(userData);
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setProfileName('@' + user.displayName);
          getProfileImage();
          
-         //alert('loaded');
+         console.log('loaded');
         } else{
             setProfileName('Anon');
         }
@@ -35,7 +37,7 @@ const Dashboard =(props) => {
        setProfileName('Guest');
       }
     });
-  
+}
 
    
 
@@ -54,14 +56,15 @@ const Dashboard =(props) => {
     const getProfileImage = ()=> {   
         getDownloadURL(sRef(storage, `images/ProfilePicture-${userData.uid}`))
          .then((url) => {
-        //console.log(url); 
-            
+       
         props.func(url);
+        setProfPicUrl(url);
         const imgDash = document.getElementById('profile-pic');
-        
         imgDash.setAttribute('src', null);
         imgDash.setAttribute('src', url);
-        sRef.off();
+        imgDash.style.display='block';
+        console.log(url); 
+        //sRef.off();
      })
      .catch((error) => {
       //alert('load img error');
@@ -70,10 +73,11 @@ const Dashboard =(props) => {
 
    }
 
-   //getProfileImage();
-   useEffect(()=>{
+   authFunc();
    
+   useEffect(()=>{
     
+  
     
    },[])
 
@@ -106,6 +110,8 @@ const Dashboard =(props) => {
             </div>
             <div className='profile-icon'>
                 <div className='profile-pic'><img  alt="ppImg" id='profile-pic'  />
+                
+                
                 </div>
                 <div className='profile-name'>{profileName}</div>
             </div>
