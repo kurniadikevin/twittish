@@ -34,11 +34,8 @@ function App(props) {
     });
     
   
-    
-  
   //read
   const readPost =() => {
-
       // READ DATA ONCE
     const dbRef = ref(getDatabase());
     get(child(dbRef, 'post')).then((snapshot) => {
@@ -62,14 +59,26 @@ function App(props) {
   
 
   
-  useEffect(()=> {
-    
+  useEffect(()=> {   
     readPost();
     getAuthFunc();
     return readPost(); 
   },[]);
 
-  let renderListData =  postData.map((item)=>
+  // display form for replay each specific element
+  const displayReplyForm = (index,ev)=> {
+    const replyForm = document.querySelectorAll('#reply-form');
+    if (ev.target.value === 'OFF'){
+        ev.target.value = 'ON';
+        replyForm[index].style.display='block';  
+    } else {
+        ev.target.value = 'OFF';
+        replyForm[index].style.display='none';  
+    }
+  }
+
+
+  let renderListData =  postData.map((item,index)=>
         <div className="main-content">
             <div className="twit-content">{item.twit}</div>
             <div className="username-content">{item.username}</div> 
@@ -78,12 +87,19 @@ function App(props) {
                 <span class="material-symbols-outlined">
                   favorite
                   </span>
-                  <span class="material-symbols-outlined">
+                  <span class="material-symbols-outlined" id="reply-icon" 
+                  onClick={(event)=> displayReplyForm(index,event)} value='OFF'>
                   reply
                   </span>
                   <span class="material-symbols-outlined">
                   repeat
                   </span>
+
+                <div id="reply-form">
+                    <div id="reply-header">Replying to {item.username}</div>
+                    <textarea id="reply-input" rows={4} cols={35}></textarea>
+                    <button id="reply-btn">Reply</button> 
+                </div>
             </div>
         </div>
     )
@@ -100,6 +116,7 @@ function App(props) {
       }
 }
 
+   
 
 
   return (

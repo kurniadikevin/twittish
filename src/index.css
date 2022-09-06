@@ -210,3 +210,24 @@ span{
     padding-top: 10px;
     font-size: 14pt;
   }
+      
+  #reply-icon{
+    cursor: pointer;
+  }
+
+      #reply-form{
+        display: none;
+      }
+        #reply-header{
+          color: cadetblue;
+          font-size: 10pt;
+        }
+        #reply-input{
+          resize: none;
+        }
+        #reply-btn{
+          display: block;
+          background-color: cadetblue;
+          color: white;
+          border-radius: 5px;
+        }
