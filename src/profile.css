@@ -44,9 +44,14 @@
             padding-left: 10px;
             padding-top: 10px;
         }
-        .profile-main>div{
-           
-        }
+            .profile-name{
+                font-size: 13pt;
+            }
+
+            .profile-desc{
+                font-size: 13pt;
+                color: white;
+            }
          
         
             #profile-pic-prof{

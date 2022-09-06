@@ -26,6 +26,16 @@ const ProfileForm = (props) => {
             uploadBytesResumable(storageRef, file);
         }
   
+    const submitForm = ()=> {
+        const nameInput = document.querySelector('#name-input');
+        props.userData.displayName = nameInput.value;
+        const descInput = document.querySelector('#desc-text');
+        props.userData.description = descInput.value;
+        
+        console.log(props.userData);
+        //close form
+       closeProfileForm();
+    }
 
     return(
         <div id="profile-form">
@@ -50,7 +60,7 @@ const ProfileForm = (props) => {
                         Add image</button>
                    
                 </div>
-                <button id="profile-form-add">Add</button>
+                <button id="profile-form-add" onClick={submitForm}>Add</button>
         </div>
     )
 }

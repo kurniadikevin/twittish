@@ -122,12 +122,12 @@ const Profile = ()=> {
 
                     <div className="profile-main">
                             <div className="profile-name">@{userData.displayName}</div>
-                            <div className="profile-desc">profile desc  </div>
+                            <div className="profile-desc">{userData.description}</div>
                     </div>
                 </div>
 
                 <div className="profile-body">
-                    <ProfileForm uidImg={userData.uid} />
+                    <ProfileForm uidImg={userData.uid} userData={userData} />
                     <div className="content-cont">
                       {renderListData}
                     </div>
