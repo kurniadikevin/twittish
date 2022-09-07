@@ -9,9 +9,11 @@ import storage from "./firebase";
 
 const Dashboard =(props) => {
 
+    const blankPPUrl = 'https://pixabay.com/get/g5557f40092f55a7b789dccf798166cf3df968a1b1215b2c649129ec9e0f718da0dfa92d6effdabc321f91302fd0b4d109e0d47ac36e70aa37d55a27d9203114ab02eef15e1353faa69f034d45e90da75_640.png';
+
     // set username
     const [ profileName,setProfileName] = useState('');
-    const [profPicUrl, setProfPicUrl] = useState('');
+    const [profPicUrl, setProfPicUrl] = useState(blankPPUrl);
     const [userData,setUserData]= useState();
 
    
@@ -101,14 +103,20 @@ const Dashboard =(props) => {
                 <span class="material-symbols-outlined">
                     inbox</span>
                     Message</Link>
-                <Link to = '/signPage' className='class-link'>Sign-Page</Link> 
+                <Link to = '/signPage' className='class-link'>
+                <span class="material-symbols-outlined">
+                    exit_to_app
+                    </span>
+                    Sign </Link> 
             </nav>
             <div className='post-cont'>
+                {/*
                 <button className='post-btn' onClick={displayPostForm}> 
                     <span class="material-symbols-outlined">
                         app_registration
                     </span>
                 </button>
+                */}
             </div>
             <div className='profile-icon'>
                 <div className='profile-pic'><img  alt="ppImg" id='profile-pic'  />

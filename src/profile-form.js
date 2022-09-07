@@ -1,4 +1,5 @@
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {  ref, uploadBytesResumable } from "firebase/storage";
+import { set, getDatabase, ref as Dref, serverTimestamp} from 'firebase/database';
 import storage from "./firebase";
 import { useState } from "react";
 
@@ -25,12 +26,26 @@ const ProfileForm = (props) => {
             alert('file uploaded');
             uploadBytesResumable(storageRef, file);
         }
+
+    //write profile description database
+    //write
+function writeProfileDesc(userId, name, textData) {
+    const db = getDatabase();
+    set(Dref(db, `profileDesc/${userId}`), {
+      userId : userId,
+      username : name,
+      desc : textData,
+      createdAt :  Date(serverTimestamp()),
+    });  
+}
   
     const submitForm = ()=> {
         const nameInput = document.querySelector('#name-input');
         props.userData.displayName = nameInput.value;
         const descInput = document.querySelector('#desc-text');
-        props.userData.description = descInput.value;
+        const descriptionData = descInput.value;
+
+        writeProfileDesc(props.userData.uid , props.userData.displayName, descriptionData);
         
         console.log(props.userData);
         //close form

@@ -17,6 +17,7 @@ const Profile = ()=> {
     const [ userData,setUserData] = useState({});
     const [ profilePost, setProfilePost] = useState([]);
     const [PPurl, setPPUrl] = useState('');
+    const [ profileDesc, setProfileDesc] = useState('');
 
     // authentication
     const auth = getAuth();
@@ -52,13 +53,13 @@ const Profile = ()=> {
       get(child(dbRef, 'post')).then((snapshot) => {
         if (snapshot.exists()) {
           const data = snapshot.val();
-          var arrData = Object.keys(data).map(function(key) {
+          let arrData = Object.keys(data).map(function(key) {
             return data[key];
             });
           console.log('arrData'); 
           const newData = arrData.reverse();
           const filteredData = newData.filter((data)=>{
-            return  data.userId === userData.uid;
+            return  data.userId === userData.uid || data.retweetBy === userData.uid;
         })
         setProfilePost(filteredData);
         //loader
@@ -78,23 +79,48 @@ const Profile = ()=> {
       readFunc();
     },[userData])
 
+
+  // display form for replay each specific element
+  const displayReplyForm = (index,ev)=> {
+    const replyForm = document.querySelectorAll('#reply-form');
+    if (ev.target.value === 'OFF'){
+        ev.target.value = 'ON';
+        replyForm[index].style.display='block';  
+    } else {
+        ev.target.value = 'OFF';
+        replyForm[index].style.display='none';  
+    }
+  }
       //render data
-      let renderListData =  profilePost.map((item)=>
-        <div className="main-content">
-            <div className="twit-content">{item.twit}</div>
-            <div className="username-content">{item.username}</div> 
-            <div className="date-content">{item.createdAt}</div>
+      let renderListData =  profilePost.map((item,index)=>
+<div className="main-content">
+            <div className="row1-content">
+              <img src={item.profileImg} id="profPic-content" alt="ppImage"/>
+              <div className="username-content">{item.username}</div> 
+            </div>
+            <div className="row2-content">
+              <div className="twit-content">{item.twit}</div>
+              <div className="date-content">{item.createdAt}</div> 
+            </div>
             <div className="icon-cont">
                 <span class="material-symbols-outlined">
                   favorite
                   </span>
-                  <span class="material-symbols-outlined">
+                  <span class="material-symbols-outlined" id="reply-icon" 
+                  onClick={(event)=> displayReplyForm(index,event)} value='OFF'>
                   reply
                   </span>
                   <span class="material-symbols-outlined">
                   repeat
                   </span>
-            </div> 
+
+                <div id="reply-form">
+                    <div id="reply-header">Replying to {item.username}</div>
+                    <textarea id="reply-input" rows={4} cols={35}></textarea>
+                    <button id="reply-btn" >
+                      Reply</button> 
+                </div>
+            </div>
         </div>
     )
     
@@ -103,7 +129,21 @@ const Profile = ()=> {
     setPPUrl(data); // LOGS DATA FROM CHILD profile
   }
 
-  
+  // read data for profile description
+  const readDesc = ()=>{
+    get(child(dbRef, `profileDesc/${userData.uid}`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        const data = snapshot.val();
+        setProfileDesc(data.desc);
+    
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+  readDesc();
 
     return(
         <div className="profile-tab">
@@ -122,7 +162,7 @@ const Profile = ()=> {
 
                     <div className="profile-main">
                             <div className="profile-name">@{userData.displayName}</div>
-                            <div className="profile-desc">{userData.description}</div>
+                            <div className="profile-desc">{profileDesc}</div>
                     </div>
                 </div>
 

@@ -31,13 +31,13 @@ function writeUserData(userId, name, textData) {
               userId : userId,
               username : name,
               twit : textData,
-              createdAt :  Date(serverTimestamp())
+              createdAt :  Date(serverTimestamp()),
+              profileImg : props.ppUrl
 
             });  
         }
 
         
-
     return(
        <div className='post-form'>
                 <div className="post-top">

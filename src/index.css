@@ -191,18 +191,32 @@ span{
   
 }
 
-  .twit-content{
+  .row1-content{
+    display: flex;
+    padding-bottom: 5px;
   }
 
+  
+
+  #profPic-content{
+    height: 40px;
+    width: 40px;
+  } 
+  
   .username-content{
     font-size: 11pt;
     font-weight: 500;
     color: cadetblue;
+    padding: 10px;
+  }
+
+  .twit-content{
     padding-bottom: 5px;
   }
 
   .date-content{
     font-size: 8pt;
+    opacity: 0.8;
   }
 
   .icon-cont>span{

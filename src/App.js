@@ -3,15 +3,19 @@ import Sidebar from "./sidebar";
 import PostForm from "./post-form";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState,useEffect, useRef } from "react";
-import { getDatabase, ref, onValue, child, get} from "firebase/database";
+import { getDatabase, ref, onValue, child, get, push, serverTimestamp} from "firebase/database";
 import './loader.css';
 
 function App(props) {
+
+  //default black url
+  const blankPPUrl = 'https://pixabay.com/get/g5557f40092f55a7b789dccf798166cf3df968a1b1215b2c649129ec9e0f718da0dfa92d6effdabc321f91302fd0b4d109e0d47ac36e70aa37d55a27d9203114ab02eef15e1353faa69f034d45e90da75_640.png';
 
   // get state profile name from firebase auth
   const [ profileName,setProfileName] = useState('');
   const [ userId, setUserId] = useState('');
   const [postData, setPostData] = useState([]);
+  const [PPurl,setPPUrl] = useState(blankPPUrl);
 
 
   const auth = getAuth();
@@ -77,12 +81,33 @@ function App(props) {
     }
   }
 
+  //reply unfinished ??
+  const submitReply = (item) =>{
+    const replyInput = document.querySelector('#reply-input');
+    const replyVal = replyInput.value;
+    console.log(replyVal);
+
+    const db = getDatabase();
+    push(ref(db, `post/${item}`), {
+      userId : userId,
+      username : profileName,
+      reply : replyVal,
+      createdAt :  Date(serverTimestamp())
+
+    });  
+  }
+
 
   let renderListData =  postData.map((item,index)=>
         <div className="main-content">
-            <div className="twit-content">{item.twit}</div>
-            <div className="username-content">{item.username}</div> 
-            <div className="date-content">{item.createdAt}</div> 
+            <div className="row1-content">
+              <img src={item.profileImg} id="profPic-content" alt="ppImage"/>
+              <div className="username-content">{item.username}</div> 
+            </div>
+            <div className="row2-content">
+              <div className="twit-content">{item.twit}</div>
+              <div className="date-content">{item.createdAt}</div> 
+            </div>
             <div className="icon-cont">
                 <span class="material-symbols-outlined">
                   favorite
@@ -98,7 +123,8 @@ function App(props) {
                 <div id="reply-form">
                     <div id="reply-header">Replying to {item.username}</div>
                     <textarea id="reply-input" rows={4} cols={35}></textarea>
-                    <button id="reply-btn">Reply</button> 
+                    <button id="reply-btn" onClick={()=> submitReply(item)}>
+                      Reply</button> 
                 </div>
             </div>
         </div>
@@ -116,15 +142,16 @@ function App(props) {
       }
 }
 
-   
-
+const pull_data = (data) => {
+  setPPUrl(data); // LOGS DATA FROM CHILD profile
+}
 
   return (
     <div className="app-tab">
-          <Dashboard />
+          <Dashboard  func={pull_data}/>
           <div>
             <div onClick={displayPostForm} id='new-twit'>New Twit</div>
-            <PostForm username={profileName} userId={userId}/>
+            <PostForm username={profileName} userId={userId} ppUrl={PPurl}/>
               <div className="content-cont">
               {renderListData}
               </div>
