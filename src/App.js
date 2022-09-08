@@ -3,7 +3,7 @@ import Sidebar from "./sidebar";
 import PostForm from "./post-form";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState,useEffect, useRef } from "react";
-import { getDatabase, ref, onValue, child, get, push, serverTimestamp} from "firebase/database";
+import { getDatabase, ref, update, child, get, push, serverTimestamp} from "firebase/database";
 import './loader.css';
 
 function App(props) {
@@ -69,6 +69,38 @@ function App(props) {
     return readPost(); 
   },[]);
 
+  //retweet function update data
+  const retweetFunc = (item) => {
+    
+    function writeNewPost(uid, username, createdAt, twit, myUserName, imgUrl, myUid) {
+      const db = getDatabase();
+
+      // A post entry.
+      const postData = {
+        username : username,
+        userId : uid,
+        twit : twit,
+        createdAt : createdAt,
+        profileImg : imgUrl,
+        retweetBy : `Retweet by ${myUserName}`,
+        retweetUid : myUid
+      };
+
+      // Get a key for a new Post.
+      const newPostKey = push(child(ref(db), 'post')).key;
+      // Write the new post's data simultaneously in the posts list and the user's post list.
+      const updates = {};
+      updates['/post/' + newPostKey] = postData;
+      //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+      console.log(update(ref(db), updates))
+      return update(ref(db), updates);
+}   
+  writeNewPost(item.userId, item.username, item.createdAt, item.twit, profileName, item.profileImg, userId);
+    alert('retweeted')
+  }
+
+
+
   // display form for replay each specific element
   const displayReplyForm = (index,ev)=> {
     const replyForm = document.querySelectorAll('#reply-form');
@@ -107,7 +139,9 @@ function App(props) {
             <div className="row2-content">
               <div className="twit-content">{item.twit}</div>
               <div className="date-content">{item.createdAt}</div> 
+              <div className="retweetBy-content">{item.retweetBy}</div>
             </div>
+
             <div className="icon-cont">
                 <span class="material-symbols-outlined">
                   favorite
@@ -116,7 +150,7 @@ function App(props) {
                   onClick={(event)=> displayReplyForm(index,event)} value='OFF'>
                   reply
                   </span>
-                  <span class="material-symbols-outlined">
+                  <span class="material-symbols-outlined" id="retweet-icon" onClick={()=> retweetFunc(item)}>
                   repeat
                   </span>
 
@@ -146,6 +180,7 @@ const pull_data = (data) => {
   setPPUrl(data); // LOGS DATA FROM CHILD profile
 }
 
+
   return (
     <div className="app-tab">
           <Dashboard  func={pull_data}/>
@@ -157,11 +192,9 @@ const pull_data = (data) => {
               </div>
               <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
                
-  
-            
 
           </div>
-          <Sidebar/>
+          <Sidebar data={postData} />
     </div>
   );
 }

@@ -74,9 +74,15 @@ code {
   padding-left: 10%;
   gap: 10px;
 }
+  .class-link:hover{
+    color: cadetblue;
+  }
 
-span{
- 
+span:hover{
+ color: cadetblue;
+}
+span:active {
+  padding: 1px;
 }
 
   #profile-pic{
@@ -219,10 +225,21 @@ span{
     opacity: 0.8;
   }
 
+  .retweetBy-content{
+    font-size: 10pt;
+    padding-top: 5px;
+    color: cadetblue;
+  }
+      #retweet-icon:active {
+        color: cadetblue;
+        padding: 1px;
+      }
+
   .icon-cont>span{
     padding-right: 20px;
     padding-top: 10px;
     font-size: 14pt;
+    cursor: pointer;
   }
       
   #reply-icon{

@@ -59,7 +59,7 @@ const Profile = ()=> {
           console.log('arrData'); 
           const newData = arrData.reverse();
           const filteredData = newData.filter((data)=>{
-            return  data.userId === userData.uid || data.retweetBy === userData.uid;
+            return  data.userId === userData.uid || data.retweetUid === userData.uid;
         })
         setProfilePost(filteredData);
         //loader
@@ -101,6 +101,7 @@ const Profile = ()=> {
             <div className="row2-content">
               <div className="twit-content">{item.twit}</div>
               <div className="date-content">{item.createdAt}</div> 
+              <div className="retweetBy-content">{item.retweetBy}</div>
             </div>
             <div className="icon-cont">
                 <span class="material-symbols-outlined">
@@ -126,7 +127,7 @@ const Profile = ()=> {
     
    
   const pull_data = (data) => {
-    setPPUrl(data); // LOGS DATA FROM CHILD profile
+    setPPUrl(data); // LOGS DATA FROM DASHBOARD
   }
 
   // read data for profile description
