@@ -4,7 +4,7 @@ import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 
 const Sidebar =(props) => {
 
-    const [searchResult, setSearchResult] = useState();
+    const [searchResult, setSearchResult] = useState([]);
 
     const onChangeValue = () => {
         const searchInputVal = document.querySelector('#search-query').value;
@@ -12,26 +12,32 @@ const Sidebar =(props) => {
         const postData = props.data;
         //console.log(postData);
         const searchOutput = postData.filter((item)=> {
-            return item.username === searchInputVal;
+            return item.username === searchInputVal
         })
         console.log(searchOutput);
         setSearchResult(searchOutput); 
     }
 
     const submitSearch = () => {
+        const resultCont = document.querySelector('.display-result-cont');
         console.log(searchResult);
-       const displayResult = searchResult.map((data)=>
-       <div>
-            <div>{data.username}</div>
-            <div>{data.twit}</div>
-       </div>
+       const displayResult = searchResult.map(function(item){
+          return( ` <div>
+                        <div class='user-result'>${item.username}</div>
+                        <div class='twit-result'>${item.twit}</div>
+                  </div>`
+            )
+       }
       );
-
-      
        console.log(displayResult);
-       const resultCont = document.querySelector('.display-result-cont');
-       resultCont.innerHTML= displayResult;
+       resultCont.innerHTML=  displayResult.join('');
+       resultCont.style.display='block';
     }
+
+    const leaveSearchResult = ()=>{
+        const resultCont = document.querySelector('.display-result-cont');
+        resultCont.style.display='none';
+    } 
 
 
     return (
@@ -49,7 +55,7 @@ const Sidebar =(props) => {
                     </button>
                 </div>
             </div>
-            <div className='display-result-cont'>
+            <div className='display-result-cont' onMouseLeave={leaveSearchResult}>
               
             </div>
             
