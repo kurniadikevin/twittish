@@ -69,7 +69,7 @@ function App(props) {
     return readPost(); 
   },[]);
 
-  //retweet function update data
+  //RETWEET TWIT
   const retweetFunc = (item) => {
     
     function writeNewPost(uid, username, createdAt, twit, myUserName, imgUrl, myUid) {
@@ -102,8 +102,8 @@ function App(props) {
 
 
   // display form for replay each specific element
-  const displayReplyForm = (index,ev)=> {
-    const replyForm = document.querySelectorAll('#reply-form');
+  const displayReplyForm = (index,ev,element)=> {
+    const replyForm = document.querySelectorAll(element);
     if (ev.target.value === 'OFF'){
         ev.target.value = 'ON';
         replyForm[index].style.display='block';  
@@ -113,20 +113,48 @@ function App(props) {
     }
   }
 
-  //reply unfinished ??
+  //REPLY TWIT
   const submitReply = (item) =>{
     const replyInput = document.querySelector('#reply-input');
     const replyVal = replyInput.value;
     console.log(replyVal);
 
-    const db = getDatabase();
-    push(ref(db, `post/${item}`), {
-      userId : userId,
-      username : profileName,
-      reply : replyVal,
-      createdAt :  Date(serverTimestamp())
+    function writeNewPost(uid, username, createdAt, twit, retweetBy, imgUrl, retweetUid, userReplyName,userReplyId,replyText,replyTime,replyPP) {
+      const db = getDatabase();
 
-    });  
+      // A post entry.
+      const postData = {
+        username : username,
+        userId : uid,
+        twit : twit,
+        createdAt : createdAt,
+        profileImg : imgUrl,
+        retweetBy : retweetBy,
+        retweetUid : retweetUid,
+        reply : {
+            username : userReplyName,
+            userId : userReplyId,
+            replyTwit : replyText,
+            createdAt : replyTime,
+            profileImg : replyPP
+        }
+      };
+
+      // Get a key for a new Post.
+      const newPostKey = push(child(ref(db), 'post')).key;
+      // Write the new post's data simultaneously in the posts list and the user's post list.
+      const updates = {};
+      updates['/post/' + newPostKey] = postData;
+      //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+      console.log(update(ref(db), updates))
+      return update(ref(db), updates);
+    }
+      writeNewPost(item.userId, item.username, item.createdAt, item.twit, item.retweetBy, item.profileImg, item.retweetUid, 
+        profileName,userId,replyVal,  Date(serverTimestamp()),PPurl)
+      
+      alert('reply sent');
+      const replyForm = document.querySelector('#reply-form');
+      replyForm.style.display='none';
   }
 
 
@@ -143,22 +171,50 @@ function App(props) {
             </div>
 
             <div className="icon-cont">
-                <span class="material-symbols-outlined">
-                  favorite
+                <span class="material-symbols-outlined"
+                onClick={(event)=> displayReplyForm(index,event,'#reply-display')} value='OFF'>
+                  mode_comment
                   </span>
                   <span class="material-symbols-outlined" id="reply-icon" 
-                  onClick={(event)=> displayReplyForm(index,event)} value='OFF'>
+                  onClick={(event)=> displayReplyForm(index,event,'#reply-form')} value='OFF'>
                   reply
                   </span>
                   <span class="material-symbols-outlined" id="retweet-icon" onClick={()=> retweetFunc(item)}>
                   repeat
                   </span>
 
+                {/*REPLY FORM */}
                 <div id="reply-form">
                     <div id="reply-header">Replying to {item.username}</div>
                     <textarea id="reply-input" rows={4} cols={35}></textarea>
                     <button id="reply-btn" onClick={()=> submitReply(item)}>
                       Reply</button> 
+                </div>
+
+                 {/*REPLY DISPLAY */}
+                <div id='reply-display'>
+                   <div className="reply-display-head">
+                      { 
+                      (() => {
+                        if(item.reply) {
+                          return (<div>reply by {item.reply.username}</div>);
+                        }
+                      })()
+                    }        
+                   </div>
+                   <div className="reply-display-body">
+                   { 
+                      (() => {
+                        if(item.reply) {
+                          return (
+                          <div>
+                             <div> {item.reply.replyTwit}</div>
+                             <div id="reply-time"> {item.reply.createdAt}</div>
+                          </div>);
+                        }
+                      })()
+                    }       
+                   </div>
                 </div>
             </div>
         </div>
@@ -182,7 +238,7 @@ const pull_data = (data) => {
 
 
   return (
-    <div className="app-tab">
+    <div className="app-tab" >
           <Dashboard  func={pull_data}/>
           <div>
             <div onClick={displayPostForm} id='new-twit'>New Twit</div>

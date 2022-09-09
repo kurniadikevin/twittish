@@ -17,6 +17,24 @@ code {
     monospace;
 }
 
+/*Fade in */
+body {
+	animation: fadeInAnimation ease 2s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+
+
 .app-tab{
   display: grid;
   grid-template-columns: 1fr 5fr 2fr;
@@ -46,7 +64,7 @@ code {
   .title-app{
     border: 0px solid red;
     grid-row: 1/3;
-    font-size: 20pt;
+    font-size: 22pt;
     display: flex;
     justify-content: center;
     padding-top: 10%;
@@ -263,3 +281,24 @@ span:active {
           color: white;
           border-radius: 5px;
         }
+    
+    #reply-display{
+      display: none;
+      padding-top: 10px;
+      padding-left: 10px;
+    }
+        .reply-display-head{
+          color: cadetblue;
+        }
+        .reply-display-body{
+          color: white;
+          font-size: 12pt;
+          padding-left: 10px;
+        }
+        .reply-display-body>div{
+          padding-bottom: 5px;
+        }
+          #reply-time{
+            font-size: 7pt;
+          }
+    

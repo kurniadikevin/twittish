@@ -18,6 +18,7 @@ const Profile = ()=> {
     const [ profilePost, setProfilePost] = useState([]);
     const [PPurl, setPPUrl] = useState('');
     const [ profileDesc, setProfileDesc] = useState('');
+    const [postData, setPostData] = useState([]);
 
     // authentication
     const auth = getAuth();
@@ -58,6 +59,7 @@ const Profile = ()=> {
             });
           console.log('arrData'); 
           const newData = arrData.reverse();
+          setPostData(newData);
           const filteredData = newData.filter((data)=>{
             return  data.userId === userData.uid || data.retweetUid === userData.uid;
         })
@@ -105,7 +107,7 @@ const Profile = ()=> {
             </div>
             <div className="icon-cont">
                 <span class="material-symbols-outlined">
-                  favorite
+                mode_comment
                   </span>
                   <span class="material-symbols-outlined" id="reply-icon" 
                   onClick={(event)=> displayReplyForm(index,event)} value='OFF'>
@@ -178,7 +180,7 @@ const Profile = ()=> {
                 </div>
             </div>
 
-            < Sidebar />    
+            < Sidebar  data={postData}/>    
         </div>
     )
 }
