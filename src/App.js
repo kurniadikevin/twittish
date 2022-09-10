@@ -110,12 +110,17 @@ function App(props) {
   }
 
   //REPLY TWIT
-  const submitReply = (item) =>{
+  const submitReply = async(item) =>{
     const replyInput = document.querySelector('#reply-input');
-    const replyVal = replyInput.value;
-    console.log(replyVal);
+    let myPromise = new Promise(
+      function(resolve){
+     resolve((replyInput.value));
+ })
+ let inputText = await myPromise;
 
-    function writeNewPost(uid, username, createdAt, twit, retweetBy, imgUrl, retweetUid, userReplyName,userReplyId,replyText,replyTime,replyPP) {
+    alert(inputText);
+
+    function writeNewPost(uid, username, createdAt, twit, imgUrl, userReplyName,userReplyId,replyText,replyTime,replyPP) {
       const db = getDatabase();
 
       // A post entry.
@@ -125,8 +130,7 @@ function App(props) {
         twit : twit,
         createdAt : createdAt,
         profileImg : imgUrl,
-        retweetBy : retweetBy,
-        retweetUid : retweetUid,
+      
         reply : {
             username : userReplyName,
             userId : userReplyId,
@@ -146,7 +150,7 @@ function App(props) {
       return update(ref(db), updates);
     }
       writeNewPost(item.userId, item.username, item.createdAt, item.twit, item.retweetBy, item.profileImg, item.retweetUid, 
-        profileName,userId,replyVal,  Date(serverTimestamp()),PPurl)
+        profileName,userId,inputText,  Date(serverTimestamp()),PPurl)
       
       alert('reply sent');
       const replyForm = document.querySelector('#reply-form');
@@ -161,18 +165,11 @@ function App(props) {
               
               <div className="username-content">
                 <Link className='username-content'  
-                  to={{
-                  pathname: `/profileVisit/${item.userId}`,
-                  state: { itemUser : {item} } 
-                 }}
-                
-                >
-
-                 {/* itemUser={item} */}
-                 
+                  to={{ pathname: `/profileVisit/${item.userId}`,  }}
+                 state={{ data : item}}>
                       {item.username}
-                </Link></div> 
-                
+                </Link>
+              </div>      
 
             </div>
             <div className="row2-content">

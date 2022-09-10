@@ -10,6 +10,8 @@ body {
   */
   background-color: rgb(30,30,30);
   color: cadetblue;
+  padding-top: 10px;
+ 
 }
 
 code {
@@ -115,6 +117,7 @@ span:active {
     width: 50px;
     height: 50px;
     display: none;
+    border-radius: 30px;
   }
 
   #lds-roller-dash{
@@ -154,7 +157,7 @@ span:active {
       border-radius: 5px;
       background-color: cadetblue;
       color: black;
-      height: 200px;
+      height: 180px;
       width: 500px;
       top: 80px;
       left: 400px;
@@ -178,10 +181,12 @@ span:active {
       display: flex;
       justify-content: space-between;
       padding-right: 5%;
+      color: white;
     }
 
       #publish-icon{
         cursor: pointer;
+        color: white;
       }
 
       
@@ -212,7 +217,12 @@ span:active {
   padding: 5px;
   font-weight: 600;
   cursor: pointer;
+  border-radius: 15px;
 }
+    #new-twit:hover{
+      color: cadetblue;
+      background-color: white;
+    }
 
 .main-content{
   color: white;
@@ -220,6 +230,7 @@ span:active {
   flex-direction: column;
   border-top: 1px solid rgb(60,60,60);
   padding-top: 10px;
+  padding-bottom: 10px;
 }
 
   .row1-content{
@@ -243,6 +254,9 @@ span:active {
     padding: 10px;
     text-decoration: none;
   }
+    .username-content:hover{
+      color: darkcyan;
+    }
 
   .twit-content{
     padding-bottom: 5px;

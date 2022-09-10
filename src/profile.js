@@ -5,9 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import ProfileForm from "./profile-form";
 import { getDatabase, ref, child, get, off} from "firebase/database";
-import { getDownloadURL, getStorage } from "firebase/storage";
-import { ref as sRef } from 'firebase/storage';
-import storage from "./firebase";
+import { Link } from "react-router-dom";
 
 
 
@@ -98,7 +96,15 @@ const Profile = ()=> {
 <div className="main-content">
             <div className="row1-content">
               <img src={item.profileImg} id="profPic-content" alt="ppImage"/>
-              <div className="username-content">{item.username}</div> 
+              
+              <div className="username-content">
+                <Link className='username-content'  
+                  to={{ pathname: `/profileVisit/${item.userId}`,  }}
+                 state={{ data : item}}>
+                      {item.username}
+                </Link>
+              </div>    
+
             </div>
             <div className="row2-content">
               <div className="twit-content">{item.twit}</div>
@@ -166,7 +172,7 @@ const Profile = ()=> {
                     <div className="profile-main">
                             <div className="profile-name">@{userData.displayName}</div>
                             <div className="profile-desc">{profileDesc}</div>
-                            <button id="follow-btn">Follow</button>
+                           {/* <button id="follow-btn">Follow</button> */}
                     </div>
                 </div>
 

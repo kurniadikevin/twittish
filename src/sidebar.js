@@ -26,12 +26,13 @@ const Sidebar =(props) => {
        const displayResult = searchResult.map(function(item){
           return( ` <div class='cont-result'>
                         <div class='user-result'>${item.username}</div>
+                        
                         <div class='twit-result'>${item.twit}</div>
                   </div>`
             )
        }
       );
-       console.log(displayResult);
+       
        resultCont.innerHTML=  displayResult.join('');
        resultCont.style.display='block';
     }
@@ -58,15 +59,15 @@ const Sidebar =(props) => {
                 </div>
             </div>
             <div className='display-result-cont' onMouseLeave={leaveSearchResult}>     
+                    
             </div>
 
             <div className='sidebar-main'>
-                sidebar main
-                -new user
+                
             </div>
 
             <div className='sidebar-footer'>
-              <div>Website by Kevin Kurniadi </div>
+              <div>WebApp by Kevin Kurniadi </div>
               <div>  
                 <a href='https://github.com/kurniadikevin'>
                   <i class="fa fa-github" id='github-logo'  href="https://github.com/kurniadikevin"></i> 

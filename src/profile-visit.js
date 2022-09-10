@@ -2,11 +2,8 @@ import Dashboard from "./dashboard";
 import './profile.css';
 import Sidebar from "./sidebar";
 import { useParams, useLocation } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import ProfileForm from "./profile-form";
 import { getDatabase, ref, child, get, off} from "firebase/database";
-import { getDownloadURL, getStorage } from "firebase/storage";
 import { ref as sRef } from 'firebase/storage';
 import storage from "./firebase";
 
@@ -15,23 +12,21 @@ import storage from "./firebase";
 
 const ProfileVisit = (props)=> {
 
-  
-    
     const [ profilePost, setProfilePost] = useState([]);// 
     const [ profileDesc, setProfileDesc] = useState('');
     const [postData, setPostData] = useState([]);
     
     const [itemUser, setItemUser] = useState({});
-
     const {type} = useParams();
-    const stateParamVal = useLocation().state.itemUser;
-    console.log(type);
-    console.log (stateParamVal);
-
-    setItemUser(stateParamVal);
-   
-  
     
+    console.log(type);// parameter for link extension
+
+    const location= useLocation();
+    //console.log(props);
+    //console.log(location, " useLocation Hook");
+    const data = location.state?.data;
+    console.log(data);
+   
 
       // Read data for profile home
       const dbRef = ref(getDatabase());
@@ -42,7 +37,7 @@ const ProfileVisit = (props)=> {
           let arrData = Object.keys(data).map(function(key) {
             return data[key];
             });
-          console.log('arrData'); 
+         
           const newData = arrData.reverse();
           setPostData(newData);
           const filteredData = newData.filter((data)=>{
@@ -61,12 +56,6 @@ const ProfileVisit = (props)=> {
       });
     }
 
-    useEffect(()=> {
-     
-      readFunc();
-    },[])
-
-
   // display form for replay each specific element
   const displayReplyForm = (index,ev)=> {
     const replyForm = document.querySelectorAll('#reply-form');
@@ -78,6 +67,7 @@ const ProfileVisit = (props)=> {
         replyForm[index].style.display='none';  
     }
   }
+
       //render data
       let renderListData =  profilePost.map((item,index)=>
 <div className="main-content">
@@ -130,6 +120,14 @@ const ProfileVisit = (props)=> {
     });
   }
   readDesc();
+  
+
+
+  useEffect(()=> {
+    setItemUser(data);
+    readFunc();
+  },[itemUser])
+
 
     return(
         <div className="profile-tab">
