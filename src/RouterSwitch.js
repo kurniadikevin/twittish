@@ -5,6 +5,7 @@ import App from './App';
 import Profile from "./profile";
 import Message from "./message";
 import SignPage from "./sign-page";
+import ProfileVisit from "./profile-visit";
 
 const RouterSwitch = ()=> {
 
@@ -33,6 +34,7 @@ const RouterSwitch = ()=> {
         <Route path="/profile" element={<Profile />} />
         <Route path="/message" element={<Message username={profileName}/>} /> 
         <Route path="/signPage" element={<SignPage/>} /> 
+        <Route path="/profileVisit/:type" element={<ProfileVisit />} />
     </Routes>
     )
 }

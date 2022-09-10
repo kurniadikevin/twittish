@@ -95,14 +95,17 @@ const Dashboard =(props) => {
                     <span class="material-symbols-outlined">
                     other_houses</span>
                      Home</Link>
+
                 <Link to = '/profile' className='class-link'>
                     <span class="material-symbols-outlined">
                     person_4</span>
                     Profile</Link>
+
                 <Link to = '/message' className='class-link'>
                 <span class="material-symbols-outlined">
                     inbox</span>
                     Message</Link>
+                    
                 <Link to = '/signPage' className='class-link'>
                 <span class="material-symbols-outlined">
                     exit_to_app
@@ -110,13 +113,7 @@ const Dashboard =(props) => {
                     Sign </Link> 
             </nav>
             <div className='post-cont'>
-                {/*
-                <button className='post-btn' onClick={displayPostForm}> 
-                    <span class="material-symbols-outlined">
-                        app_registration
-                    </span>
-                </button>
-                */}
+                
             </div>
             <div className='profile-icon'>
                 <div className='profile-pic'><img  alt="ppImg" id='profile-pic'  />

@@ -5,6 +5,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState,useEffect, useRef } from "react";
 import { getDatabase, ref, update, child, get, push, serverTimestamp} from "firebase/database";
 import './loader.css';
+import { Link } from "react-router-dom";
 
 function App(props) {
 
@@ -49,7 +50,7 @@ function App(props) {
           return data[key];
           
       });
-      //alert(arrData);      
+      //console.log(arrData);      
         setPostData(arrData.reverse());
         const loader = document.querySelector('.lds-roller');
         loader.style.display='none';
@@ -63,12 +64,7 @@ function App(props) {
   
 
   
-  useEffect(()=> {   
-    readPost();
-    getAuthFunc();
-    return readPost(); 
-  },[]);
-
+ 
   //RETWEET TWIT
   const retweetFunc = (item) => {
     
@@ -162,7 +158,22 @@ function App(props) {
         <div className="main-content">
             <div className="row1-content">
               <img src={item.profileImg} id="profPic-content" alt="ppImage"/>
-              <div className="username-content">{item.username}</div> 
+              
+              <div className="username-content">
+                <Link className='username-content'  
+                  to={{
+                  pathname: `/profileVisit/${item.userId}`,
+                  state: { itemUser : {item} } 
+                 }}
+                
+                >
+
+                 {/* itemUser={item} */}
+                 
+                      {item.username}
+                </Link></div> 
+                
+
             </div>
             <div className="row2-content">
               <div className="twit-content">{item.twit}</div>
@@ -172,7 +183,8 @@ function App(props) {
 
             <div className="icon-cont">
                 <span class="material-symbols-outlined"
-                onClick={(event)=> displayReplyForm(index,event,'#reply-display')} value='OFF'>
+                onClick={(event)=> displayReplyForm(index,event,'#reply-display')} value='OFF' 
+                id="mode-comment">
                   mode_comment
                   </span>
                   <span class="material-symbols-outlined" id="reply-icon" 
@@ -197,6 +209,7 @@ function App(props) {
                       { 
                       (() => {
                         if(item.reply) {
+                         
                           return (<div>reply by {item.reply.username}</div>);
                         }
                       })()
@@ -235,6 +248,12 @@ function App(props) {
 const pull_data = (data) => {
   setPPUrl(data); // LOGS DATA FROM CHILD profile
 }
+
+useEffect(()=> {   
+  readPost();
+  getAuthFunc();
+  return readPost(); 
+},[/*renderListData */]);// auto render can run but cause lag
 
 
   return (

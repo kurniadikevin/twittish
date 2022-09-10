@@ -1,5 +1,7 @@
 .sidebar{
     padding: 20px;
+    display: flex;
+    flex-direction: column;
     
   
 }
@@ -51,9 +53,30 @@
            top: 80px;
         }
 
-        
+        .cont-result:hover{
+            background-color: rgb(200,200,200);
+        }
+
+        .cont-result{
+            padding-bottom: 5px;
+        }
 
             .user-result{
                 color: black;
                 padding-top: 5px;
             }
+
+        .sidebar-footer{
+            position: fixed;
+            bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+           #github-logo{
+            font-size: 24pt;
+            color: white;
+            padding-right: 10px;
+            cursor: pointer;
+           }
+

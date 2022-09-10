@@ -12,7 +12,9 @@ const Sidebar =(props) => {
         const postData = props.data;
         //console.log(postData);
         const searchOutput = postData.filter((item)=> {
-            return item.username === searchInputVal
+            return   item.username === searchInputVal ;
+           
+            //item.includes(searchInputVal);
         })
         console.log(searchOutput);
         setSearchResult(searchOutput); 
@@ -22,7 +24,7 @@ const Sidebar =(props) => {
         const resultCont = document.querySelector('.display-result-cont');
         console.log(searchResult);
        const displayResult = searchResult.map(function(item){
-          return( ` <div>
+          return( ` <div class='cont-result'>
                         <div class='user-result'>${item.username}</div>
                         <div class='twit-result'>${item.twit}</div>
                   </div>`
@@ -55,10 +57,22 @@ const Sidebar =(props) => {
                     </button>
                 </div>
             </div>
-            <div className='display-result-cont' onMouseLeave={leaveSearchResult}>
-              
+            <div className='display-result-cont' onMouseLeave={leaveSearchResult}>     
             </div>
-            
+
+            <div className='sidebar-main'>
+                sidebar main
+                -new user
+            </div>
+
+            <div className='sidebar-footer'>
+              <div>Website by Kevin Kurniadi </div>
+              <div>  
+                <a href='https://github.com/kurniadikevin'>
+                  <i class="fa fa-github" id='github-logo'  href="https://github.com/kurniadikevin"></i> 
+                </a>
+             </div>
+            </div>
         </div>
     )
 }

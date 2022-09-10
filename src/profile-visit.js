@@ -1,6 +1,7 @@
 import Dashboard from "./dashboard";
 import './profile.css';
 import Sidebar from "./sidebar";
+import { useParams, useLocation } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import ProfileForm from "./profile-form";
@@ -11,42 +12,26 @@ import storage from "./firebase";
 
 
 
-const Profile = ()=> {
 
-    const [ profileName,setProfileName] = useState('');
-    const [ userData,setUserData] = useState({});
-    const [ profilePost, setProfilePost] = useState([]);
-    const [PPurl, setPPUrl] = useState('');
+const ProfileVisit = (props)=> {
+
+  
+    
+    const [ profilePost, setProfilePost] = useState([]);// 
     const [ profileDesc, setProfileDesc] = useState('');
     const [postData, setPostData] = useState([]);
+    
+    const [itemUser, setItemUser] = useState({});
 
-    // authentication
-    const auth = getAuth();
-    const authFunc = ()=> onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        if(user.displayName){
-         setUserData(user);
-         console.log('user');  
-        } else{
-            setProfileName('Anon');
-          }
-      } else {
-        // User is signed out
-       setProfileName('Guest');
-      }
-    });
+    const {type} = useParams();
+    const stateParamVal = useLocation().state.itemUser;
+    console.log(type);
+    console.log (stateParamVal);
 
-
-    // display form dom
-    const displayProfileForm = () => {
-        const profileForm = document.querySelector('#profile-form'); 
-        profileForm.style.display= 'grid';
-        const profileTab = document.querySelector('.profile-tab');
-        profileTab.style.background='rgb(100,100,100,0.5)';
-        //profileTab.style.opacity='0.1';
-    }
-
+    setItemUser(stateParamVal);
+   
+  
+    
 
       // Read data for profile home
       const dbRef = ref(getDatabase());
@@ -61,7 +46,7 @@ const Profile = ()=> {
           const newData = arrData.reverse();
           setPostData(newData);
           const filteredData = newData.filter((data)=>{
-            return  data.userId === userData.uid || data.retweetUid === userData.uid;
+            return  data.userId === itemUser.userId || data.retweetUid === itemUser.userId;
         })
         setProfilePost(filteredData);
         //loader
@@ -77,9 +62,9 @@ const Profile = ()=> {
     }
 
     useEffect(()=> {
-      authFunc();
+     
       readFunc();
-    },[userData])
+    },[])
 
 
   // display form for replay each specific element
@@ -128,13 +113,11 @@ const Profile = ()=> {
     )
     
    
-  const pull_data = (data) => {
-    setPPUrl(data); // LOGS DATA FROM DASHBOARD
-  }
+  
 
   // read data for profile description
   const readDesc = ()=>{
-    get(child(dbRef, `profileDesc/${userData.uid}`)).then((snapshot) => {
+    get(child(dbRef, `profileDesc/${itemUser.userId}`)).then((snapshot) => {
       if (snapshot.exists()) {
         const data = snapshot.val();
         setProfileDesc(data.desc);
@@ -151,27 +134,27 @@ const Profile = ()=> {
     return(
         <div className="profile-tab">
 
-            <Dashboard  func={pull_data}/>
+            <Dashboard />
 
             <div className="profile-page">
                 <div className="profile-head">
                     <div className="profile-side">
                         <div className="picture-cont">
-                          <img id="profile-pic-prof" src={PPurl}
+                          <img id="profile-pic-prof" src={itemUser.profileImg}
                           alt='IMG NOT LINK YET!!!'/>
                         </div>
-                        <button id="edit-profile" onClick={displayProfileForm}>Edit</button>
+                        
                     </div>
 
                     <div className="profile-main">
-                            <div className="profile-name">@{userData.displayName}</div>
+                            <div className="profile-name">{itemUser.username}</div>
                             <div className="profile-desc">{profileDesc}</div>
                             <button id="follow-btn">Follow</button>
                     </div>
                 </div>
 
                 <div className="profile-body">
-                    <ProfileForm uidImg={userData.uid} userData={userData} />
+                  
                     <div className="content-cont">
                       {renderListData}
                     </div>
@@ -186,4 +169,4 @@ const Profile = ()=> {
     )
 }
 
-export default Profile;
+export default ProfileVisit;
