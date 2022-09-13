@@ -184,11 +184,25 @@ span:active {
       color: white;
     }
 
+    .icon-bottom{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    #load-area{
+      border: 1px solid red;
+      width: 180px;
+    }
+
       #publish-icon{
         cursor: pointer;
         color: white;
       }
 
+      #post-img{
+      
+      }
       
       #close-icon{
         display: flex;

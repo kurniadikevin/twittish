@@ -52,10 +52,12 @@ function writeUserData(userId, name, textData) {
                 </textarea>
             <div className="post-bottom">
                 <div className="username-form">{props.username}</div>
-                <div id="publish-icon" onClick={publishTwit}>
-                   <span class="material-symbols-outlined">
-                    publish
-                    </span>
+                <div className="icon-bottom">
+                    <div id="publish-icon" onClick={publishTwit}>
+                      <span class="material-symbols-outlined">
+                        publish
+                        </span>
+                    </div>
                 </div>
            </div>
         </div>
