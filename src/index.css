@@ -171,6 +171,8 @@ span:active {
       gap: 5%;
       padding-left: 2%;
       padding-top: 1%;
+      padding-bottom: 1%;
+      
       justify-content: center;
       position: absolute;
       z-index: 1;
@@ -191,6 +193,22 @@ span:active {
       color: white;
     }
 
+   
+
+    .input-cont{
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    #input-file-img{
+      /* display: none; */
+    }
+
+    #input-file-img-click{
+        cursor: pointer;
+    }
+
       #publish-icon{
         cursor: pointer;
         color: white;
@@ -201,9 +219,10 @@ span:active {
         display: flex;
         justify-content: flex-end;
         height: 5px;
-        padding-right: 4%;
+        padding-right: 5%;
         padding-bottom: 2%;
         cursor: pointer;
+        color:white;
       }
 
 
