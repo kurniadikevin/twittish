@@ -29,6 +29,7 @@ const Dashboard =(props) => {
          setProfileName('@' + user.displayName);
          getProfileImage();
          console.log('loaded');
+         
         } else{
             setProfileName('Anon');
         }

@@ -284,6 +284,11 @@ span:active {
       color: darkcyan;
     }
 
+  #postImage-content{
+    width: 200px;
+    aspect-ratio: 1;
+  }
+
   .twit-content{
     padding-bottom: 5px;
   }

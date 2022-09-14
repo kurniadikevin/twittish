@@ -22,14 +22,15 @@ const PostForm =(props) =>{
 
 
 //write
-function writeUserData(userId, name, textData,) {
+function writeUserData(userId, name, textData,postImageUrl) {
             const db = getDatabase();
             push(ref(db, 'post/'), {
               userId : userId,
               username : name,
               twit : textData,
               createdAt :  Date(serverTimestamp()),
-              profileImg : props.ppUrl
+              profileImg : props.ppUrl,
+              postImage : postImageUrl
 
             });  
         }
@@ -43,6 +44,9 @@ function writeUserData(userId, name, textData,) {
   //handle change for input image
   function handleChange(event) {
     setFile(event.target.files[0]);
+    let randomNum = Math.floor(Math.random() * 10000);
+    setPicNum(randomNum);
+    alert(randomNum);
 }
 
 
@@ -52,19 +56,33 @@ function handleUpload() {
       alert("Please choose a file first!")
   }
       //store image
-       let randomNum = Math.floor(Math.random() * 1000);
-      const storageRef = ImgRef(storage, `/post_images/postPicture_${randomNum}`);
+      const storageRef = ImgRef(storage, `/post_images/postPicture_${picNum}`);
       //alert('file uploaded');
-      uploadBytesResumable(storageRef, file);
-      setPicNum(randomNum);
+      const uploadTask = uploadBytesResumable(storageRef, file, 'image/jpeg');
 
+      uploadTask.on('state_changed', 
+  (snapshot) => {
+    // Observe state change events such as progress, pause, and resume
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + progress + '% done');
+    
+  },(error) => {
+    // Handle unsuccessful uploads
+    alert('upload error');
+  }, () => {
+    alert('file uploaded');
        //get image url
-    getDownloadURL(ImgRef(storage, `/post_images/postPicture_${picNum}`))
-    .then((url) => {
-  
-   setPostPicUrl(url);
-    })
-  
+       getDownloadURL(ImgRef(storage, `/post_images/postPicture_${picNum}`))
+       .then((url) => {
+         alert(url);
+        setPostPicUrl(url);
+       })
+  }
+  )
+
+   
+      
 }
 
 const  publishTwit = async () =>{
@@ -74,7 +92,7 @@ const  publishTwit = async () =>{
           resolve((postText.value));
       })
       let inputText = await myPromise;
-      writeUserData(props.userId, props.username, inputText);
+      writeUserData(props.userId, props.username, inputText,postPicUrl);
     //alert('twit uploaded!');
       removePostForm();
       // update alert on pop Up

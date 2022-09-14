@@ -164,7 +164,7 @@ const Profile = ()=> {
                     <div className="profile-side">
                         <div className="picture-cont">
                           <img id="profile-pic-prof" src={PPurl}
-                          alt='IMG NOT LINK YET!!!'/>
+                          alt='loading...'/>
                         </div>
                         <button id="edit-profile" onClick={displayProfileForm}>Edit</button>
                     </div>
