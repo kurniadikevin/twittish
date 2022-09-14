@@ -42,6 +42,11 @@ body {
   grid-template-columns: 1.3fr 5fr 2fr;
 }
 
+  .app-header{
+    display: flex;
+    justify-content: space-between;
+  }
+
  .message-tab{
   display: grid;
   grid-template-columns: 1.3fr 7fr;
@@ -168,13 +173,15 @@ span:active {
       padding-top: 1%;
       justify-content: center;
       position: absolute;
+      z-index: 1;
     }
 
     #post-text{
       resize: none;
-      width: 95%;
+      width: 90%;
       height: 60%;
       border: none;
+      padding: 10px;
     }
 
     .post-bottom{

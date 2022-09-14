@@ -1,9 +1,7 @@
 .sidebar{
     padding: 20px;
     display: flex;
-    flex-direction: column;
-    
-  
+    flex-direction: column;    
 }
 
     .search-bar-cont{
@@ -66,12 +64,50 @@
                 padding-top: 5px;
             }
 
+        .sidebar-popup{
+            height: 50px;
+            width: 300px;
+            border-radius: 15px;
+            background-color: cadetblue;
+            color: white;
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 380px;
+            grid-template-columns: repeat(4,1fr);
+            grid-template-rows: repeat(5,1fr);
+           animation: fadeIn 2s; 
+        }
+
+            @keyframes fadeIn {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+            #popup-close{
+                grid-column: 4/5;
+                display: flex;
+                justify-content: flex-end;
+                padding-right: 20%;
+                padding-top: 5%;
+                cursor: pointer;
+            }
+
+            #popup-text{
+                font-size: 13pt;
+                grid-column: 1/4;
+                grid-row: 1/3;
+                padding-left: 10%;
+                padding-top: 5%;
+                white-space: nowrap;
+            }
+
         .sidebar-footer{
             position: fixed;
             bottom: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            
         }
            #github-logo{
             font-size: 24pt;

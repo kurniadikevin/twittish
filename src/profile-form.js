@@ -23,8 +23,13 @@ const ProfileForm = (props) => {
             alert("Please choose a file first!")
         }
             const storageRef = ref(storage, `/images/ProfilePicture-${props.uidImg}`);
-            alert('file uploaded');
+            //alert('file uploaded');
             uploadBytesResumable(storageRef, file);
+            // update alert on pop Up
+                const popUp =document.querySelector('.sidebar-popup');
+                popUp.style.display='grid';
+                const popUpText = document.querySelector('#popup-text');
+                popUpText.textContent='Image uploaded';
         }
 
     //write profile description database
@@ -45,11 +50,15 @@ function writeProfileDesc(userId, name, textData) {
         const descInput = document.querySelector('#desc-text');
         const descriptionData = descInput.value;
 
-        writeProfileDesc(props.userData.uid , props.userData.displayName, descriptionData);
-        
+        writeProfileDesc(props.userData.uid , props.userData.displayName, descriptionData);  
         console.log(props.userData);
         //close form
        closeProfileForm();
+       // update alert on pop Up
+       const popUp =document.querySelector('.sidebar-popup');
+       popUp.style.display='grid';
+       const popUpText = document.querySelector('#popup-text');
+       popUpText.textContent='Profile Edited';
     }
 
     return(

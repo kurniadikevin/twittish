@@ -11,8 +11,13 @@ const PostForm =(props) =>{
         })
         let inputText = await myPromise;
         writeUserData(props.userId, props.username, inputText);
-        alert(props.userId + props.username + inputText);
+       //alert('twit uploaded!');
         removePostForm();
+        // update alert on pop Up
+        const popUp =document.querySelector('.sidebar-popup');
+        popUp.style.display='grid';
+        const popUpText = document.querySelector('#popup-text');
+        popUpText.textContent='Twit successfully posted!';
   }
 
   // remove postForm
