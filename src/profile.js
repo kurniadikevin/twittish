@@ -107,6 +107,13 @@ const Profile = ()=> {
 
             </div>
             <div className="row2-content">
+                   { 
+                      (() => {
+                        if(item.postImage) {
+                          return ( <img id="postImage-content" src={item.postImage} alt='postImage'></img>);
+                        }
+                      })()
+                    }      
               <div className="twit-content">{item.twit}</div>
               <div className="date-content">{item.createdAt}</div> 
               <div className="retweetBy-content">{item.retweetBy}</div>

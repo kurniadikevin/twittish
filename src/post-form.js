@@ -47,52 +47,48 @@ function writeUserData(userId, name, textData,postImageUrl) {
     let randomNum = Math.floor(Math.random() * 10000);
     setPicNum(randomNum);
     alert(randomNum);
+   
 }
 
-
-function handleUpload() {
- 
+async function handleUpload () {
   if (!file) {
       alert("Please choose a file first!")
   }
-      //store image
-      const storageRef = ImgRef(storage, `/post_images/postPicture_${picNum}`);
-      //alert('file uploaded');
-      const uploadTask = uploadBytesResumable(storageRef, file, 'image/jpeg');
-
-      uploadTask.on('state_changed', 
-  (snapshot) => {
-    // Observe state change events such as progress, pause, and resume
-    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-    const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + progress + '% done');
     
-  },(error) => {
-    // Handle unsuccessful uploads
-    alert('upload error');
-  }, () => {
-    alert('file uploaded');
-       //get image url
-       getDownloadURL(ImgRef(storage, `/post_images/postPicture_${picNum}`))
-       .then((url) => {
-         alert(url);
-        setPostPicUrl(url);
-       })
-  }
-  )
-
+      const storageRef = ImgRef(storage,`/post_images/postPicture_${picNum}`);
+      //alert('file uploaded');
+      uploadBytesResumable(storageRef, file);
+      // update alert on pop Up
+          const popUp =document.querySelector('.sidebar-popup');
+          popUp.style.display='grid';
+          const popUpText = document.querySelector('#popup-text');
+          popUpText.textContent='Image uploaded';
+    
    
       
-}
+  }
+
+  
+  
+      
+
 
 const  publishTwit = async () =>{
+
+  let myPromise = new Promise(
+    function(resolve){
+    resolve((postText.value));
+})
+let inputText = await myPromise;
+
+  //get image url
+  getDownloadURL(ImgRef(storage, `/post_images/postPicture_${picNum}`))
+  .then((url) => {
+    console.log(url);
+    //setPostPicUrl(url);
   
-      let myPromise = new Promise(
-          function(resolve){
-          resolve((postText.value));
-      })
-      let inputText = await myPromise;
-      writeUserData(props.userId, props.username, inputText,postPicUrl);
+      
+      writeUserData(props.userId, props.username, inputText,url);
     //alert('twit uploaded!');
       removePostForm();
       // update alert on pop Up
@@ -100,6 +96,7 @@ const  publishTwit = async () =>{
       popUp.style.display='grid';
       const popUpText = document.querySelector('#popup-text');
       popUpText.textContent='Twit successfully posted!';
+    })
 }
         
     return(
