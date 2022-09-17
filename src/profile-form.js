@@ -81,7 +81,7 @@ function writeProfileDesc(userId, name, textData) {
                     <label>Profile Picture</label>
                     <input type="file" onChange={handleChange} accept="/image/*" />
                     <button id="add-img-btn" onClick={handleUpload} type='file' accept="/image/*">
-                        Add image</button>
+                        Add Image </button>
                    
                 </div>
                 <button id="profile-form-add" onClick={submitForm}>Add</button>

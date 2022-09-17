@@ -202,7 +202,7 @@ span:active {
     }
 
     #input-file-img{
-      /* display: none; */
+      display: none; 
     }
 
     #input-file-img-click{

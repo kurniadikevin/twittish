@@ -1,23 +1,25 @@
 import './sidebar.css';
 import { useState } from 'react';
-import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 
 const Sidebar =(props) => {
 
     const [searchResult, setSearchResult] = useState([]);
 
     const onChangeValue = () => {
-        const searchInputVal = document.querySelector('#search-query').value;
+        const searchInputVal = (document.querySelector('#search-query').value);
         console.log(searchInputVal);
         const postData = props.data;
         //console.log(postData);
-        const searchOutput = postData.filter((item)=> {
-            return   item.username === searchInputVal ;
-           
-            //item.includes(searchInputVal);
-        })
+          const searchOutput = postData.filter((item)=> {
+            return   item.username === searchInputVal;
+               })
+    
         console.log(searchOutput);
         setSearchResult(searchOutput); 
+        
+        if(searchResult.length>=1){
+            submitSearch();
+        }
     }
 
     const submitSearch = () => {
@@ -73,9 +75,12 @@ const Sidebar =(props) => {
                       <div id='popup-close' onClick={closePopUp}>x</div>
                       <div id='popup-text'>pop up text</div>
               </div>
+             
+
             </div>
 
             <div className='sidebar-footer'>
+               
               <div>WebApp by Kevin Kurniadi </div>
               <div>  
                 <a href='https://github.com/kurniadikevin'>

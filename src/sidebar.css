@@ -76,12 +76,13 @@
             right: 380px;
             grid-template-columns: repeat(4,1fr);
             grid-template-rows: repeat(5,1fr);
-           animation: fadeIn 2s; 
+           animation: fadeIn 5s; 
         }
 
             @keyframes fadeIn {
                 0% { opacity: 0; }
-                100% { opacity: 1; }
+                50%{ opacity: 1;}
+                100% { opacity: 0; }
             }
             #popup-close{
                 grid-column: 4/5;
