@@ -286,7 +286,7 @@ span:active {
 
   #postImage-content{
     width: 200px;
-    aspect-ratio: 1;
+    object-fit: cover;
   }
 
   .twit-content{
