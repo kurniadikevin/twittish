@@ -56,7 +56,7 @@ const Sidebar =(props) => {
             <div className="search-bar-cont">
                 <div className='search-title'>Search</div>
                 <div className='search-cont'>
-                    <input type='text' id="search-query" placeholder="Find something" 
+                    <input type='text' id="search-query" placeholder="Find user" 
                     onChange={onChangeValue}>
                     </input>
                     <button id='search-btn' onClick={submitSearch}>
