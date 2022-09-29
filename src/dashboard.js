@@ -23,13 +23,13 @@ const Dashboard =(props) => {
      onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserData(user);
-        console.log(userData);
+        
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setProfileName('@' + user.displayName);
          getProfileImage();
-         
          console.log('loaded');
+         
         } else{
             setProfileName('Anon');
         }

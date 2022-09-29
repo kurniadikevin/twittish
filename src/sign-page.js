@@ -45,7 +45,8 @@ const SignPage = ()=> {
             user.displayName = userName;
             console.log(user);
             redirectFunc();
-            alert('sign in succesfully');        
+            //alert('sign in succesfully');  
+                  
         })
         .catch((error) => {
             const errorCode = error.code;

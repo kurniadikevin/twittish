@@ -15,6 +15,7 @@ height: 100vh;
         aspect-ratio: 1.5;
         height: 45%;
         box-shadow: 5px 10px 18px black;
+        padding-bottom: 3%;
     }
 
     .sign-title{

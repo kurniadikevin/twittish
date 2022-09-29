@@ -107,6 +107,13 @@ const Profile = ()=> {
 
             </div>
             <div className="row2-content">
+                   { 
+                      (() => {
+                        if(item.postImage) {
+                          return ( <img id="postImage-content" src={item.postImage} alt='postImage'></img>);
+                        }
+                      })()
+                    }      
               <div className="twit-content">{item.twit}</div>
               <div className="date-content">{item.createdAt}</div> 
               <div className="retweetBy-content">{item.retweetBy}</div>
@@ -164,7 +171,7 @@ const Profile = ()=> {
                     <div className="profile-side">
                         <div className="picture-cont">
                           <img id="profile-pic-prof" src={PPurl}
-                          alt='IMG NOT LINK YET!!!'/>
+                          alt='loading...'/>
                         </div>
                         <button id="edit-profile" onClick={displayProfileForm}>Edit</button>
                     </div>
