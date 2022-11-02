@@ -1,14 +1,1 @@
 To do
-
-RETWEET FUNCTION
- doneeee
- 
-ADD REPLY FUNCTION
-- added ui form for REPLY
--reply to reply
-
-ADD PROFILE VISIT
-
-
-ADD QUERY SEARCH
-- add include on fly
