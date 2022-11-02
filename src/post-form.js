@@ -1,5 +1,5 @@
 import { getDatabase, ref, set, get,onValue,  push, on, serverTimestamp } from "firebase/database";
-import { useState } from "react";
+import {  useState } from "react";
 import storage from "./firebase";
 import {  ref as ImgRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
@@ -8,6 +8,7 @@ const PostForm =(props) =>{
   const[file,setFile]= useState('');
   const [picNum,setPicNum] = useState();
   const [picUrl, setPicUrl] = useState('');
+
 
   const postText = document.querySelector('#post-text');
 
@@ -71,7 +72,7 @@ function writeUserData(userId, name, textData,postImageUrl) {
 
 const  publishTwit = async () =>{
 
-
+  
   let myPromise = new Promise(
     function(resolve){
     resolve((postText.value));
@@ -92,6 +93,7 @@ const  publishTwit = async () =>{
         popUp.style.display='grid';
         const popUpText = document.querySelector('#popup-text');
         popUpText.textContent='Twit successfully posted!';
+        
               
     })
   } else{
@@ -106,7 +108,7 @@ const  publishTwit = async () =>{
       
   }
 }
-        
+
     return(
        <div className='post-form'>
                 <div className="post-top">
