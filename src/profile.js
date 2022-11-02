@@ -4,7 +4,7 @@ import Sidebar from "./sidebar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import ProfileForm from "./profile-form";
-import { getDatabase, ref, child, get, off} from "firebase/database";
+import { getDatabase, ref, child, get,} from "firebase/database";
 import { Link } from "react-router-dom";
 
 
@@ -14,7 +14,7 @@ const Profile = ()=> {
     const [ profileName,setProfileName] = useState('');
     const [ userData,setUserData] = useState({});
     const [ profilePost, setProfilePost] = useState([]);
-    const [PPurl, setPPUrl] = useState('');
+    const [PPurl, setPPUrl] = useState('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png');
     const [ profileDesc, setProfileDesc] = useState('');
     const [postData, setPostData] = useState([]);
 
@@ -95,7 +95,16 @@ const Profile = ()=> {
       let renderListData =  profilePost.map((item,index)=>
 <div className="main-content">
             <div className="row1-content">
-              <img src={item.profileImg} id="profPic-content" alt="ppImage"/>
+            { 
+              (() => {
+                if(item.postImage) {
+                return (<img src={item.profileImg} id="profPic-content" alt="ppImage"/>);
+                } else {
+                  return (<img src={'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} id="profPic-content" alt="ppImage"/>)
+                }
+                })()
+                    }      
+        
               
               <div className="username-content">
                 <Link className='username-content'  

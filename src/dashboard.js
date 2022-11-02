@@ -87,7 +87,7 @@ const Dashboard =(props) => {
 
     return(
         <div className='dashboard'>
-            <div className='title-app' >
+            <div className='title-app' onClick={()=> window.location.reload(false)} >
                 <div>Twittish</div>
             </div>
             <nav className='nav-link'>

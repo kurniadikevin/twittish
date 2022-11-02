@@ -10,13 +10,14 @@ import { Link } from "react-router-dom";
 function App(props) {
 
   //default black url
-  const blankPPUrl = 'https://pixabay.com/get/g5557f40092f55a7b789dccf798166cf3df968a1b1215b2c649129ec9e0f718da0dfa92d6effdabc321f91302fd0b4d109e0d47ac36e70aa37d55a27d9203114ab02eef15e1353faa69f034d45e90da75_640.png';
+  const blankPPUrl = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
   // get state profile name from firebase auth
   const [ profileName,setProfileName] = useState('');
   const [ userId, setUserId] = useState('');
   const [postData, setPostData] = useState([]);
   const [PPurl,setPPUrl] = useState(blankPPUrl);
+  const [render,setRender]= useState(false);
 
 
   const auth = getAuth();
@@ -91,6 +92,7 @@ function App(props) {
       //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
       console.log(update(ref(db), updates))
       return update(ref(db), updates);
+     
 }   
   writeNewPost(item.userId, item.username, item.createdAt, item.twit, profileName, item.profileImg, userId);
    // alert('retweeted');
@@ -168,6 +170,7 @@ function App(props) {
        //remove reply form after reply send
        const replyForm = document.querySelectorAll('#reply-form');
         replyForm[index].style.display='none';
+        setRender(true);
   }
 
 
@@ -270,13 +273,13 @@ useEffect(()=> {
   readPost();
   getAuthFunc();
   return readPost(); 
-},[]);// auto render can run but cause lag
+},[]);// 
 
 
   return (
     <div className="app-tab" >
           <Dashboard  func={pull_data}/>
-          <div>
+          <div className="body-wrap">
             <div className="app-header">
                 <div onClick={displayPostForm} id='new-twit'>New Twit</div>
             

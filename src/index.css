@@ -39,7 +39,7 @@ body {
 
 .app-tab{
   display: grid;
-  grid-template-columns: 1.3fr 5fr 2fr;
+  grid-template-columns: 1.8fr 5fr 2fr;
 }
 
   .app-header{
@@ -49,13 +49,13 @@ body {
 
  .message-tab{
   display: grid;
-  grid-template-columns: 1.3fr 7fr;
+  grid-template-columns: 1.8fr 7fr;
 } 
 
 .profile-tab{
   border: 0px solid red;
   display: grid;
-  grid-template-columns: 1.3fr 5fr 2fr;
+  grid-template-columns:1.8fr 5fr 2fr;
 }
 
 
@@ -82,8 +82,7 @@ body {
     justify-content: center;
     padding-top: 10%;
     font-weight: 700;
-    
-    
+    cursor: pointer;
   }  
 
   .nav-link{
@@ -244,6 +243,7 @@ span:active {
 /* APP */
 .content-cont{
  padding: 20px;
+ 
  display: flex;
  flex-direction: column;
  gap: 10px;
@@ -372,3 +372,55 @@ span:active {
             font-size: 7pt;
           }
     
+.body-wrap{
+  
+}
+
+/* ipad size */
+@media screen and (max-width: 1100px) {
+  .app-tab, .profile-tab{
+    grid-template-columns: 2fr 5fr;
+  }
+  .nav-link{
+    display: inline;
+  }
+  .nav-link>a{
+    padding-bottom: 50px;
+  }
+}
+
+/* mobile size */
+@media screen and (max-width: 600px) {
+  .app-tab, .profile-tab{
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr auto;
+  }
+  .nav-link{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    grid-row: 3/4;
+  }
+  .nav-link>a{
+    padding-bottom: 50px;
+  }
+  .dashboard{
+    height: 500px;
+    position: static;
+    grid-template-rows: repeat(3,1fr);
+  }
+  .title-app{
+    display: flex;
+    align-items: center;
+    height: 200px;
+    font-size: 30pt;
+    padding-top: 0%;
+  }
+  #new-twit{
+    padding: 5px 20px;
+  }
+  .profile-name{
+    position: relative;
+    top: 50px;
+  }
+}
