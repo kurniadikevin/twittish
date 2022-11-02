@@ -23,13 +23,13 @@ const Dashboard =(props) => {
      onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserData(user);
-        console.log(userData);
+        
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setProfileName('@' + user.displayName);
          getProfileImage();
-         
          console.log('loaded');
+         
         } else{
             setProfileName('Anon');
         }
@@ -87,7 +87,7 @@ const Dashboard =(props) => {
 
     return(
         <div className='dashboard'>
-            <div className='title-app' >
+            <div className='title-app' onClick={()=> window.location.reload(false)} >
                 <div>Twittish</div>
             </div>
             <nav className='nav-link'>

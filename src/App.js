@@ -10,13 +10,14 @@ import { Link } from "react-router-dom";
 function App(props) {
 
   //default black url
-  const blankPPUrl = 'https://pixabay.com/get/g5557f40092f55a7b789dccf798166cf3df968a1b1215b2c649129ec9e0f718da0dfa92d6effdabc321f91302fd0b4d109e0d47ac36e70aa37d55a27d9203114ab02eef15e1353faa69f034d45e90da75_640.png';
+  const blankPPUrl = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
   // get state profile name from firebase auth
   const [ profileName,setProfileName] = useState('');
   const [ userId, setUserId] = useState('');
   const [postData, setPostData] = useState([]);
   const [PPurl,setPPUrl] = useState(blankPPUrl);
+  const [render,setRender]= useState(false);
 
 
   const auth = getAuth();
@@ -26,6 +27,7 @@ function App(props) {
         if(user.displayName){
          setProfileName('@' + user.displayName);
          setUserId(user.uid);
+        
          
         } else{
             setProfileName('Anon');
@@ -90,9 +92,16 @@ function App(props) {
       //updates['/user-posts/' + uid + '/' + newPostKey] = postData;
       console.log(update(ref(db), updates))
       return update(ref(db), updates);
+     
 }   
   writeNewPost(item.userId, item.username, item.createdAt, item.twit, profileName, item.profileImg, userId);
-    alert('retweeted')
+   // alert('retweeted');
+    // update alert on pop Up
+    const popUp =document.querySelector('.sidebar-popup');
+    popUp.style.display='grid';
+    const popUpText = document.querySelector('#popup-text');
+    popUpText.textContent='Retweeted';
+
   }
 
 
@@ -110,25 +119,24 @@ function App(props) {
   }
 
   //REPLY TWIT
-  const submitReply = async(item) =>{
-    const replyInput = document.querySelector('#reply-input');
+  const submitReply = async(item,index) =>{
+    const replyInput = document.querySelectorAll('#reply-input');
     let myPromise = new Promise(
       function(resolve){
-     resolve((replyInput.value));
+     resolve((replyInput[index].value));
  })
  let inputText = await myPromise;
-
-    alert(inputText);
+   // alert(inputText);
 
     function writeNewPost(uid, username, createdAt, twit, imgUrl, userReplyName,userReplyId,replyText,replyTime,replyPP) {
       const db = getDatabase();
 
       // A post entry.
       const postData = {
-        username : username,
         userId : uid,
-        twit : twit,
+        username : username, 
         createdAt : createdAt,
+        twit : twit,
         profileImg : imgUrl,
       
         reply : {
@@ -149,12 +157,20 @@ function App(props) {
       console.log(update(ref(db), updates))
       return update(ref(db), updates);
     }
-      writeNewPost(item.userId, item.username, item.createdAt, item.twit, item.retweetBy, item.profileImg, item.retweetUid, 
+      writeNewPost(item.userId, item.username, item.createdAt, item.twit, item.profileImg, 
         profileName,userId,inputText,  Date(serverTimestamp()),PPurl)
-      
-      alert('reply sent');
-      const replyForm = document.querySelector('#reply-form');
-      replyForm.style.display='none';
+      //alert('reply sent');
+     
+       // update alert on pop Up
+       const popUp =document.querySelector('.sidebar-popup');
+       popUp.style.display='grid';
+       const popUpText = document.querySelector('#popup-text');
+       popUpText.textContent='Reply send'; 
+
+       //remove reply form after reply send
+       const replyForm = document.querySelectorAll('#reply-form');
+        replyForm[index].style.display='none';
+        setRender(true);
   }
 
 
@@ -168,11 +184,18 @@ function App(props) {
                   to={{ pathname: `/profileVisit/${item.userId}`,  }}
                  state={{ data : item}}>
                       {item.username}
-                </Link>
+                </Link>  
               </div>      
 
             </div>
             <div className="row2-content">
+                 { 
+                      (() => {
+                        if(item.postImage) {
+                          return ( <img id="postImage-content" src={item.postImage} alt='postImage'></img>);
+                        }
+                      })()
+                    }      
               <div className="twit-content">{item.twit}</div>
               <div className="date-content">{item.createdAt}</div> 
               <div className="retweetBy-content">{item.retweetBy}</div>
@@ -196,7 +219,7 @@ function App(props) {
                 <div id="reply-form">
                     <div id="reply-header">Replying to {item.username}</div>
                     <textarea id="reply-input" rows={4} cols={35}></textarea>
-                    <button id="reply-btn" onClick={()=> submitReply(item)}>
+                    <button id="reply-btn" onClick={()=> submitReply(item,index)}>
                       Reply</button> 
                 </div>
 
@@ -250,14 +273,17 @@ useEffect(()=> {
   readPost();
   getAuthFunc();
   return readPost(); 
-},[/*renderListData */]);// auto render can run but cause lag
+},[]);// 
 
 
   return (
     <div className="app-tab" >
           <Dashboard  func={pull_data}/>
-          <div>
-            <div onClick={displayPostForm} id='new-twit'>New Twit</div>
+          <div className="body-wrap">
+            <div className="app-header">
+                <div onClick={displayPostForm} id='new-twit'>New Twit</div>
+            
+            </div>
             <PostForm username={profileName} userId={userId} ppUrl={PPurl}/>
               <div className="content-cont">
               {renderListData}

@@ -23,8 +23,13 @@ const ProfileForm = (props) => {
             alert("Please choose a file first!")
         }
             const storageRef = ref(storage, `/images/ProfilePicture-${props.uidImg}`);
-            alert('file uploaded');
+            //alert('file uploaded');
             uploadBytesResumable(storageRef, file);
+            // update alert on pop Up
+                const popUp =document.querySelector('.sidebar-popup');
+                popUp.style.display='grid';
+                const popUpText = document.querySelector('#popup-text');
+                popUpText.textContent='Image uploaded';
         }
 
     //write profile description database
@@ -45,11 +50,15 @@ function writeProfileDesc(userId, name, textData) {
         const descInput = document.querySelector('#desc-text');
         const descriptionData = descInput.value;
 
-        writeProfileDesc(props.userData.uid , props.userData.displayName, descriptionData);
-        
+        writeProfileDesc(props.userData.uid , props.userData.displayName, descriptionData);  
         console.log(props.userData);
         //close form
        closeProfileForm();
+       // update alert on pop Up
+       const popUp =document.querySelector('.sidebar-popup');
+       popUp.style.display='grid';
+       const popUpText = document.querySelector('#popup-text');
+       popUpText.textContent='Profile Edited';
     }
 
     return(
@@ -72,7 +81,7 @@ function writeProfileDesc(userId, name, textData) {
                     <label>Profile Picture</label>
                     <input type="file" onChange={handleChange} accept="/image/*" />
                     <button id="add-img-btn" onClick={handleUpload} type='file' accept="/image/*">
-                        Add image</button>
+                        Add Image </button>
                    
                 </div>
                 <button id="profile-form-add" onClick={submitForm}>Add</button>
