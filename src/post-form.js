@@ -117,17 +117,17 @@ const  publishTwit = async () =>{
                           </span> 
                     </div>
                 </div>
-                <label id="post-label"></label>
-                <textarea id="post-text" rows='4' cols='30' name="post-text"
-                placeholder="Write something you want to post">
-                </textarea>
+                  <label id="post-label"></label>
+                  <textarea id="post-text" rows='4' cols='30' name="post-text"
+                  placeholder="Write something you want to post">
+                  </textarea>
             <div className="post-bottom">
                 <div className="username-form">{props.username}</div>
-<<<<<<< HEAD
+
                 <div className="icon-bottom">
                     <div id="publish-icon" onClick={publishTwit}>
-                      <span class="material-symbols-outlined">
-=======
+                      <span class="material-symbols-outlined"/>
+
               
                 <div className="input-cont">
                   <div>
@@ -144,13 +144,15 @@ const  publishTwit = async () =>{
                     </div>
                     <div id="publish-icon" onClick={publishTwit}>
                         <span class="material-symbols-outlined">
->>>>>>> modify
+
                         publish
                         </span>
                     </div>
                 </div>
            </div>
         </div>
+      </div>
+      </div>
     )
 }
 

@@ -191,8 +191,8 @@ span:active {
       padding-right: 5%;
       color: white;
     }
-
-<<<<<<< HEAD
+/* 
+<<<<<<< HEAD */
     .icon-bottom{
       display: flex;
       flex-direction: row;
@@ -202,7 +202,8 @@ span:active {
     #load-area{
       border: 1px solid red;
       width: 180px;
-=======
+    }
+/* ======= */
    
 
     .input-cont{
@@ -217,7 +218,7 @@ span:active {
 
     #input-file-img-click{
         cursor: pointer;
->>>>>>> modify
+/* >>>>>>> modify */
     }
 
       #publish-icon{
