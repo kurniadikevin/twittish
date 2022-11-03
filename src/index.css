@@ -376,7 +376,7 @@ span:active {
 
 /* mobile size */
 @media screen and (max-width: 600px) {
-  .app-tab, .profile-tab{
+  .app-tab, .profile-tab, .message-tab{
     grid-template-columns: 1fr;
     grid-template-rows: 2fr auto;
   }
