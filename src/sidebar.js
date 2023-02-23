@@ -81,7 +81,7 @@ const Sidebar =(props) => {
 
             <div className='sidebar-footer'>
                
-              <div>WebApp by Kevin Kurniadi </div>
+              <div>WebApp by kurniadikevin </div>
               <div>  
                 <a href='https://github.com/kurniadikevin'>
                   <i class="fa fa-github" id='github-logo'  href="https://github.com/kurniadikevin"></i> 
