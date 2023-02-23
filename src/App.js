@@ -281,7 +281,7 @@ useEffect(()=> {
           <Dashboard  func={pull_data}/>
           <div className="body-wrap">
             <div className="app-header">
-                <div onClick={displayPostForm} id='new-twit'>New Twit</div>
+                <div onClick={displayPostForm} id='new-twit'>New</div>
             
             </div>
             <PostForm username={profileName} userId={userId} ppUrl={PPurl}/>

@@ -92,22 +92,26 @@ const Dashboard =(props) => {
             </div>
             <nav className='nav-link'>
                 <Link to = '/' className='class-link'>
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined"
+                    id='span-nav'>
                     other_houses</span>
                      Home</Link>
 
                 <Link to = '/profile' className='class-link'>
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined"
+                     id='span-nav'>
                     person_4</span>
                     Profile</Link>
 
                 <Link to = '/message' className='class-link'>
-                <span class="material-symbols-outlined">
+                <span class="material-symbols-outlined" 
+                id='span-nav'>
                     inbox</span>
                     Message</Link>
                     
                 <Link to = '/signPage' className='class-link'>
-                <span class="material-symbols-outlined">
+                <span class="material-symbols-outlined"
+                 id='span-nav'>
                     exit_to_app
                     </span>
                     Sign </Link> 
@@ -121,7 +125,7 @@ const Dashboard =(props) => {
 
                 
                 </div>
-                <div className='profile-name'>{profileName}</div>
+                <div className='profile-name-dash'>{profileName}</div>
             </div>
         </div>
     )

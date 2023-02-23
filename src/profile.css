@@ -9,7 +9,7 @@
     .profile-head{
         border: 0px solid white;
         display: grid;
-        grid-template-columns: 1fr 5fr;
+        grid-template-columns: 1.5fr 5fr;
         padding-left: 20px;
         max-height: 200px;
         padding-bottom: 20px;
@@ -27,15 +27,15 @@
             align-items: center;
         }
         #edit-profile{
-           width: 60px;
-           height: 20px;
+          padding: 8px 16px;
            background-color: cadetblue;
            color: white;
            cursor: pointer;
-           border-radius: 10px;
+           border-radius: 15px;
            position: relative;
            top:5px;
            margin:  auto; 
+           
 
         }
 
@@ -48,7 +48,9 @@
             padding-top: 10px;
         }
             .profile-name{
-                font-size: 13pt;
+                font-size: 16pt;
+                display: flex;
+                align-items: center;
             }
 
             .profile-desc{
