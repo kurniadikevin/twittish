@@ -173,7 +173,7 @@ const Profile = ()=> {
     return(
         <div className="profile-tab">
 
-            <Dashboard  func={pull_data}/>
+            <Dashboard  func={pull_data}  pageSelected={1}/>
 
             <div className="profile-page">
                 <div className="profile-head">

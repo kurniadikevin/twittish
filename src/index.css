@@ -118,6 +118,12 @@ body {
     border-radius: 40px;
   }
 
+  #class-link-selected{
+    color: cadetblue;
+    background-color: rgb(50,50,50);
+    border-radius: 40px;
+  }
+
 span:hover{
  color: cadetblue;
 }
@@ -143,16 +149,17 @@ span:active {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 80px;
+  gap: 50px;
  
 }
   #profile-pic{
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
+    border: 1px solid var(--black1);
   }
   .profile-name-dash{
-    font-size: 16pt;
+    font-size: 14pt;
    
 
   }
@@ -287,7 +294,7 @@ span:active {
     }
 
 .main-content{
-  color: white;
+  color: var(--white);
   display: flex;
   flex-direction: column;
   border-top: 1px solid rgb(60,60,60);

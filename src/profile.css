@@ -9,7 +9,7 @@
     .profile-head{
         border: 0px solid white;
         display: grid;
-        grid-template-columns: 1.5fr 5fr;
+        grid-template-columns: 2fr 5fr;
         padding-left: 20px;
         max-height: 200px;
         padding-bottom: 20px;
@@ -70,9 +70,11 @@
             }
         
             #profile-pic-prof{
-                width: 125px;
-                height: 125px;
-                border-radius: 60px;
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                padding: 10px;
+                border: 1px solid var(--black1);
             }
 
     .profile-body{

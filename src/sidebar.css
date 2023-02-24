@@ -29,6 +29,10 @@
         padding: 2px;
         font-size: 11pt;
         color: cadetblue;
+        padding: 5px;
+    }
+    #search-query:focus{
+        background-color: var(--white);
     }
 
     #search-btn{
@@ -39,7 +43,6 @@
         color: white;
         background-color: cadetblue;
         position: relative;
-        bottom: 3px;
     }
         #search-btn>span:hover { color:black}
 

@@ -53,6 +53,8 @@ height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
+        
     }
         .button-wrapper{
             padding: 10px;
@@ -65,7 +67,7 @@ height: 100vh;
             margin-left: 5px;
         }
 
-        .signUp-btn, .logIn-btn{
+        .signUp-btn, .logIn-btn, .logIn-test-account{
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
             'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
             sans-serif;

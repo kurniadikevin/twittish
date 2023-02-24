@@ -55,6 +55,23 @@ const SignPage = ()=> {
         });
     }
 
+      //log in testAccount
+      const logInTestAccount = () => {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, 'testAccount@gmail.com', '123123')
+        .then((userCredential) => {
+            // Signed in with test account
+            const user = userCredential.user;
+            user.displayName = 'TestAccount';
+            redirectFunc();
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorCode + errorMessage);//
+        });
+    }
+
     //redirect function
     const navigate = useNavigate();
     const redirectFunc = useCallback(() => navigate('/', {replace: true}), [navigate]);
@@ -90,6 +107,11 @@ const SignPage = ()=> {
                             <button className='logIn-btn' onClick={logInUser}
                             >Log in</button>
                         
+                        </div>
+                        <div className='button-test-wrapper'>
+                            <button className='logIn-test-account' onClick={logInTestAccount}>
+                                Log in testAccount
+                            </button>
                         </div>
                     </div>
             
