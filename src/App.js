@@ -278,7 +278,7 @@ useEffect(()=> {
 
   return (
     <div className="app-tab" >
-          <Dashboard  func={pull_data}/>
+          <Dashboard  func={pull_data} pageSelected={0}/>
           <div className="body-wrap">
             <div className="app-header">
                 <div onClick={displayPostForm} id='new-twit'>New</div>

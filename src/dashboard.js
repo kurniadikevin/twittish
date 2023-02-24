@@ -78,10 +78,13 @@ const Dashboard =(props) => {
    }
 
    authFunc();
+
+   
    
    useEffect(()=>{
-    
-  
+    //highlight selected page
+   const classLink = document.querySelectorAll('.class-link');
+   classLink[props.pageSelected].id='class-link-selected';
     
    },[])
 
