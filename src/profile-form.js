@@ -6,7 +6,7 @@ import { useState } from "react";
 const ProfileForm = (props) => {
 
     const [file,setFile]= useState('');
-   
+   console.log(props.userData);
     const closeProfileForm = ()=> {
         const profileForm = document.querySelector('#profile-form');
         profileForm.style.display = 'none';
@@ -48,7 +48,7 @@ function writeProfileDesc(userId, name, textData) {
         const nameInput = document.querySelector('#name-input');
         props.userData.displayName = nameInput.value;
         const descInput = document.querySelector('#desc-text');
-        const descriptionData = descInput.value;
+        const descriptionData = descInput.value ? descInput.value : '';
 
         writeProfileDesc(props.userData.uid , props.userData.displayName, descriptionData);  
         console.log(props.userData);
@@ -70,7 +70,7 @@ function writeProfileDesc(userId, name, textData) {
                 </div>
                 <div className="name-cont">
                     <label>Name</label>
-                    <input type='text' id="name-input"></input>
+                    <input type='text' id="name-input" defaultValue={props.userData.displayName}></input>
                 </div>
                 <div className="desc-cont">
                     <label>Desc</label>
