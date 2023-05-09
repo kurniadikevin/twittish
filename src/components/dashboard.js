@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDownloadURL, getStorage,} from "firebase/storage";
 import { ref as sRef } from 'firebase/storage';
-import storage from "./firebase";
+import storage from "../firebase";
 
 
 
@@ -106,12 +106,6 @@ const Dashboard =(props) => {
                     person_4</span>
                     Profile</Link>
 
-                <Link to = '/message' className='class-link'>
-                <span class="material-symbols-outlined" 
-                id='span-nav'>
-                    inbox</span>
-                    Message</Link>
-                    
                 <Link to = '/signPage' className='class-link'>
                 <span class="material-symbols-outlined"
                  id='span-nav'>

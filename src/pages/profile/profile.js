@@ -1,9 +1,9 @@
-import Dashboard from "./dashboard";
+import Dashboard from "../../components/dashboard";
 import './profile.css';
-import Sidebar from "./sidebar";
+import Sidebar from "../../components/sidebar/sidebar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
-import ProfileForm from "./profile-form";
+import ProfileForm from "../../components/profile-form";
 import { getDatabase, ref, child, get,} from "firebase/database";
 import { Link } from "react-router-dom";
 

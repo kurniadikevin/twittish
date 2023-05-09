@@ -1,11 +1,11 @@
 import {  Routes, Route} from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
-import App from './App';
-import Profile from "./profile";
+import App from './pages/home/App';
+import Profile from "./pages/profile/profile";
 import Message from "./message";
 import SignPage from "./pages/sign-page/sign-page.js";
-import ProfileVisit from "./profile-visit";
+import ProfileVisit from "./pages/profileVisit/profile-visit";
 
 const RouterSwitch = ()=> {
 

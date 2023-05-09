@@ -1,11 +1,10 @@
-import Dashboard from "./dashboard";
-import './profile.css';
-import Sidebar from "./sidebar";
+import Dashboard from "../../components/dashboard";
+import '../profile/profile.css';
+import Sidebar from "../../components/sidebar/sidebar";
 import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getDatabase, ref, child, get, off} from "firebase/database";
-import { ref as sRef } from 'firebase/storage';
-import storage from "./firebase";
+
 
 
 
@@ -19,8 +18,6 @@ const ProfileVisit = (props)=> {
     const [itemUser, setItemUser] = useState({});
     const {type} = useParams();
     
-    console.log(type);// parameter for link extension
-
     const location= useLocation();
     //console.log(props);
     //console.log(location, " useLocation Hook");
@@ -132,7 +129,7 @@ const ProfileVisit = (props)=> {
     return(
         <div className="profile-tab">
 
-            <Dashboard />
+            <Dashboard   pageSelected={1}/>
 
             <div className="profile-page">
                 <div className="profile-head">

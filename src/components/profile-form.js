@@ -1,6 +1,6 @@
 import {  ref, uploadBytesResumable } from "firebase/storage";
 import { set, getDatabase, ref as Dref, serverTimestamp} from 'firebase/database';
-import storage from "./firebase";
+import storage from "../firebase";
 import { useState } from "react";
 
 const ProfileForm = (props) => {

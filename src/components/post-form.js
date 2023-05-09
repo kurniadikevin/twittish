@@ -1,6 +1,6 @@
 import { getDatabase, ref, set, get,onValue,  push, on, serverTimestamp } from "firebase/database";
 import {  useState } from "react";
-import storage from "./firebase";
+import storage from "../firebase";
 import {  ref as ImgRef, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const PostForm =(props) =>{

@@ -1,10 +1,10 @@
-import Dashboard from "./dashboard";
-import Sidebar from "./sidebar";
-import PostForm from "./post-form";
+import Dashboard from "../../components/dashboard";
+import Sidebar from "../../components/sidebar/sidebar";
+import PostForm from "../../components/post-form";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState,useEffect, useRef } from "react";
 import { getDatabase, ref, update, child, get, push, serverTimestamp} from "firebase/database";
-import './loader.css';
+import '../../loader.css';
 import { Link } from "react-router-dom";
 
 function App(props) {
