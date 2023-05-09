@@ -4,7 +4,7 @@ import { useState } from "react";
 import App from './App';
 import Profile from "./profile";
 import Message from "./message";
-import SignPage from "./sign-page";
+import SignPage from "./pages/sign-page/sign-page.js";
 import ProfileVisit from "./profile-visit";
 
 const RouterSwitch = ()=> {

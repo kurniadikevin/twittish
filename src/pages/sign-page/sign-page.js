@@ -1,6 +1,6 @@
 import './sign-page.css';
 import { getAuth, createUserWithEmailAndPassword,  signInWithEmailAndPassword  } from "firebase/auth";
-import { app } from './firebase.js';
+/* import { app } from './firebase.js'; */
 import {useNavigate} from 'react-router-dom';
 import { useCallback, useState } from 'react';
 
@@ -84,6 +84,8 @@ const SignPage = ()=> {
                     <div className="sign-title">
                         <div>Twittish</div>
                     </div>
+                <div className='sign-wrapper'>
+                    <div className='sign-desc'>Create Account or Login Account</div>
                     <div className='username-cont'>
                         <label>Username</label>
                         <input type={'text'} id='user-username'></input>
@@ -101,11 +103,11 @@ const SignPage = ()=> {
                         <div className='button-wrapper'>
                         
                             <button className='signUp-btn' onClick={signUpNewUser}>
-                             Sign Up</button>
+                             Create Account</button>
                         
                         
                             <button className='logIn-btn' onClick={logInUser}
-                            >Log in</button>
+                            >Login Account</button>
                         
                         </div>
                         <div className='button-test-wrapper'>
@@ -114,7 +116,10 @@ const SignPage = ()=> {
                             </button>
                         </div>
                     </div>
-            
+                </div>
+             <div className='bottom-desc'>
+             <i class="fa fa-github" id='github-logo'  href="https://github.com/kurniadikevin/twittish"></i> 
+             </div>
             </div>
         </div>
     )
