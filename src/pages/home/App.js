@@ -1,4 +1,4 @@
-import Dashboard from "../../components/dashboard";
+import Dashboard from "../../components/dashboard/dashboard";
 import Sidebar from "../../components/sidebar/sidebar";
 import PostForm from "../../components/post-form";
 import { getAuth, onAuthStateChanged } from "firebase/auth";

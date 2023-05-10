@@ -1,4 +1,4 @@
-import Dashboard from "../../components/dashboard";
+import Dashboard from "../../components/dashboard/dashboard";
 import './profile.css';
 import Sidebar from "../../components/sidebar/sidebar";
 import { getAuth, onAuthStateChanged } from "firebase/auth";

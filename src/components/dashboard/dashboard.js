@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getDownloadURL, getStorage,} from "firebase/storage";
 import { ref as sRef } from 'firebase/storage';
-import storage from "../firebase";
+import storage from "../../firebase";
+import './dashboard.css';
 
 
 
@@ -111,7 +112,7 @@ const Dashboard =(props) => {
                  id='span-nav'>
                     exit_to_app
                     </span>
-                    Sign </Link> 
+                    Sign out</Link> 
             </nav>
             <div className='post-cont'>
                 

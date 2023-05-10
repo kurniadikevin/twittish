@@ -5,7 +5,7 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.apiKey,
+  apiKey: "AIzaSyBKeFQjBdZu1VB3A7fKsixz0_GlFLDdCfM",
   authDomain: "twittish-newdb.firebaseapp.com",
   databaseURL: "https://twittish-newdb-default-rtdb.asia-southeast1.firebasedatabase.app",
   projectId: "twittish-newdb",

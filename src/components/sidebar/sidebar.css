@@ -2,6 +2,8 @@
     padding: 20px;
     display: flex;
     flex-direction: column;    
+    box-shadow:  -6px 6px 12px #212121,
+    6px -6px 12px #444444;
 }
 
     .search-bar-cont{
@@ -14,6 +16,7 @@
         font-size: 16pt;
         font-weight: 600;
         padding-left: 5px;
+        color:var(--white);
     }
     .search-cont{
         display: grid;
@@ -115,7 +118,17 @@
             flex-direction: column;
             gap: 10px;
             font-size: 14pt;
-            
+        }
+
+        .sb-footer-wrapper{
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .web-by{
+            color: var(--secondary);
+            font-size: 11pt;
         }
 
         @media screen and (max-width: 1100px) {
@@ -139,3 +152,4 @@
             cursor: pointer;
            }
 
+    

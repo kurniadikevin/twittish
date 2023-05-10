@@ -1,9 +1,8 @@
 
 
  .profile-page{
-    border: 0px solid red;
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 200px auto;
  }
 
     .profile-head{
@@ -48,16 +47,18 @@
             padding-top: 10px;
         }
             .profile-name{
-                font-size: 16pt;
+                font-size: 14pt;
                 display: flex;
                 align-items: center;
+                color: var(--basic);
+                font-weight: 800;
             }
 
             .profile-desc{
                 width: 90%;
                 border-top: 1px solid rgb(55,55,55);
                 font-size: 12pt;
-                color: white;
+                color: var(--secondary);
                 padding-top: 5px;
             }
             
@@ -96,6 +97,7 @@
         bottom: 150px;
         right: 600px;
         box-shadow: 5px 10px 10px rgb(15,15,15);
+        border-radius: 8px;
     }
         
 
@@ -109,6 +111,11 @@
             display: flex;
             justify-content: space-between;
         }
+        .profile-edit{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+        }
         
             #close-edit{
                 cursor: pointer;
@@ -119,6 +126,11 @@
             align-items: center;
             justify-content: space-between;
             padding: 5%;
+        }
+
+        .name-cont>label, .desc-cont>label, .pp-cont>label{
+            color: var(--green);
+            font-weight: 400;
         }
 
             #user-PP{

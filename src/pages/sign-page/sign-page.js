@@ -118,7 +118,10 @@ const SignPage = ()=> {
                     </div>
                 </div>
              <div className='bottom-desc'>
-             <i class="fa fa-github" id='github-logo'  href="https://github.com/kurniadikevin/twittish"></i> 
+             <div>Background image by <a id='credits-link' href='https://unsplash.com/@nate_dumlao'>Nathan Dumlao</a></div>
+             <a href="https://github.com/kurniadikevin/twittish">
+                 <i class="fa fa-github" id='github-logo'></i> 
+             </a>
              </div>
             </div>
         </div>

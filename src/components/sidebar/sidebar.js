@@ -81,11 +81,13 @@ const Sidebar =(props) => {
 
             <div className='sidebar-footer'>
                
-              <div>WebApp by kurniadikevin </div>
-              <div>  
-                <a href='https://github.com/kurniadikevin'>
-                  <i class="fa fa-github" id='github-logo'  href="https://github.com/kurniadikevin"></i> 
-                </a>
+              <div className='sb-footer-wrapper'> 
+                <div className='web-by'>WebApp by kurniadikevin </div>
+                <div>  
+                    <a href='https://github.com/kurniadikevin'>
+                    <i class="fa fa-github" id='github-logo'  href="https://github.com/kurniadikevin"></i> 
+                    </a>
+                </div>
              </div>
             </div>
         </div>

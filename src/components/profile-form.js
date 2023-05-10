@@ -64,7 +64,7 @@ function writeProfileDesc(userId, name, textData) {
     return(
         <div id="profile-form">
                 <div className="profile-header">
-                    <div >Profile Edit</div>
+                    <div className="profile-edit" >Edit Profile</div>
                     <div id="close-edit" onClick={closeProfileForm}>
                         X</div>    
                 </div>
