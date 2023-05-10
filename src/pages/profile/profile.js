@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import ProfileForm from "../../components/profile-form";
 import { getDatabase, ref, child, get,} from "firebase/database";
 import { Link } from "react-router-dom";
+import PostForm from "../../components/post-form";
 
 
 
@@ -74,11 +75,6 @@ const Profile = ()=> {
       });
     }
 
-    useEffect(()=> {
-      authFunc();
-      readFunc();
-    },[userData])
-
 
   // display form for replay each specific element
   const displayReplyForm = (index,ev)=> {
@@ -95,17 +91,7 @@ const Profile = ()=> {
       let renderListData =  profilePost.map((item,index)=>
 <div className="main-content">
             <div className="row1-content">
-            { 
-              (() => {
-                if(item.postImage) {
-                return (<img src={item.profileImg} id="profPic-content" alt="ppImage"/>);
-                } else {
-                  return (<img src={'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'} id="profPic-content" alt="ppImage"/>)
-                }
-                })()
-                    }      
-        
-              
+            <img src={PPurl} id="profPic-content" alt="ppImage"/>
               <div className="username-content">
                 <Link className='username-content'  
                   to={{ pathname: `/profileVisit/${item.userId}`,  }}
@@ -170,10 +156,17 @@ const Profile = ()=> {
   }
   readDesc();
 
+  useEffect(()=> {
+    authFunc();
+    readFunc();
+  },[userData])
+
+
     return(
         <div className="profile-tab">
 
             <Dashboard  func={pull_data}  pageSelected={1}/>
+            <PostForm username={userData.displayName} userId={userData.uid} ppUrl={PPurl}/>
 
             <div className="profile-page">
                 <div className="profile-head">

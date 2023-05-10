@@ -1,3 +1,4 @@
+import { PopUpAlert } from '../popup/popup';
 import './sidebar.css';
 import { useState } from 'react';
 
@@ -44,12 +45,6 @@ const Sidebar =(props) => {
         resultCont.style.display='none';
     } 
 
-     //close pop-up text
- const closePopUp = ()=>{
-    const popUp =document.querySelector('.sidebar-popup');
-    popUp.style.display='none';
-  }
-
 
     return (
         <div className="sidebar">
@@ -71,11 +66,7 @@ const Sidebar =(props) => {
             </div>
 
             <div className='sidebar-main'>
-            <div className='sidebar-popup'>
-                      <div id='popup-close' onClick={closePopUp}>x</div>
-                      <div id='popup-text'>pop up text</div>
-              </div>
-             
+            <PopUpAlert/>
 
             </div>
 

@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword,  signInWithEmailAndPassword  }
 /* import { app } from './firebase.js'; */
 import {useNavigate} from 'react-router-dom';
 import { useCallback, useState } from 'react';
+import { PopUpAlert } from '../../components/popup/popup';
 
 const SignPage = ()=> {
 
@@ -22,12 +23,21 @@ const SignPage = ()=> {
         user.displayName = userName;
         console.log(user);
         redirectFunc();
-        alert('account created');     
-      })
+       
+        // update alert on pop Up
+        const popUp =document.querySelector('.sidebar-popup');
+        popUp.style.display='grid';
+        const popUpText = document.querySelector('#popup-text');
+        popUpText.textContent='Account created!';
+})
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorCode + errorMessage);
+        // update alert on pop Up
+        const popUp =document.querySelector('.sidebar-popup');
+        popUp.style.display='grid';
+        const popUpText = document.querySelector('#popup-text');
+        popUpText.textContent=errorCode + errorMessage;
       });
  }
     
@@ -45,13 +55,24 @@ const SignPage = ()=> {
             user.displayName = userName;
             console.log(user);
             redirectFunc();
-            //alert('sign in succesfully');  
+            //alert('sign in succesfully'); 
+             // update alert on pop Up
+            const popUp =document.querySelector('.sidebar-popup');
+            popUp.style.display='grid';
+            const popUpText = document.querySelector('#popup-text');
+            popUpText.textContent='Log in succesful!';
+       
                   
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert(errorCode + errorMessage);//
+            //alert(errorCode + errorMessage);//
+            // update alert on pop Up
+            const popUp =document.querySelector('.sidebar-popup');
+            popUp.style.display='grid';
+            const popUpText = document.querySelector('#popup-text');
+            popUpText.textContent=errorCode + errorMessage;
         });
     }
 
@@ -124,6 +145,7 @@ const SignPage = ()=> {
              </a>
              </div>
             </div>
+            <PopUpAlert/>
         </div>
     )
 }

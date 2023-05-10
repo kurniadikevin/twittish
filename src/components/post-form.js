@@ -71,14 +71,11 @@ function writeUserData(userId, name, textData,postImageUrl) {
    
 
 const  publishTwit = async () =>{
-
-  
   let myPromise = new Promise(
     function(resolve){
     resolve((postText.value));
     })
     let inputText = await myPromise;
-
     if(picUrl ==='true'){
       // get image url
       getDownloadURL(ImgRef(storage, `/post_images/postPicture_${picNum}`))
@@ -93,8 +90,6 @@ const  publishTwit = async () =>{
         popUp.style.display='grid';
         const popUpText = document.querySelector('#popup-text');
         popUpText.textContent='Twit successfully posted!';
-        
-              
     })
   } else{
       writeUserData(props.userId, props.username, inputText,'');
@@ -125,10 +120,8 @@ const  publishTwit = async () =>{
                 <div className="username-form">{props.username}</div>
 
                 <div className="icon-bottom">
-                    <div id="publish-icon" onClick={publishTwit}>
+                    <div id="publish-icon">
                       <span class="material-symbols-outlined"/>
-
-              
                 <div className="input-cont">
                   <div>
                     <span class="material-symbols-outlined" id="input-file-img-click"

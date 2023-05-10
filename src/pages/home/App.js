@@ -253,17 +253,6 @@ function App(props) {
         </div>
     )
 
-    const displayPostForm= ()=>{
-      if (profileName !== 'Anon' && profileName !== 'Guest'){
-          //alert('post form activated');
-          const postForm = document.querySelector('.post-form');
-          postForm.style.display='flex';
-          const textArea = document.querySelector('#post-text');
-          textArea.value='';
-          const profileTab = document.querySelector('.app-tab');
-          profileTab.style.background='rgb(100,100,100,0.5)';
-      }
-}
 
 const pull_data = (data) => {
   setPPUrl(data); // LOGS DATA FROM CHILD profile
@@ -280,10 +269,7 @@ useEffect(()=> {
     <div className="app-tab" >
           <Dashboard  func={pull_data} pageSelected={0}/>
           <div className="body-wrap">
-            <div className="app-header">
-                <div onClick={displayPostForm} id='new-twit'>New</div>
             
-            </div>
             <PostForm username={profileName} userId={userId} ppUrl={PPurl}/>
               <div className="content-cont">
               {renderListData}

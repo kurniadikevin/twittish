@@ -95,7 +95,9 @@ body {
       padding-bottom: 1%;
       
       justify-content: center;
-      position: absolute;
+      position: fixed;
+      top: 50px;
+      left: 30%;
       z-index: 1;
     }
 
@@ -170,20 +172,7 @@ body {
  gap: 10px;
 }
 
-#new-twit{
-  background-color: cadetblue;
-  color: white;
-  margin-left: 30px;
-  margin-top: 20px;
-  padding: 10px 20px 10px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 15px;
-}
-    #new-twit:hover{
-      color: cadetblue;
-      background-color: white;
-    }
+
 
 .main-content{
   color: var(--white);

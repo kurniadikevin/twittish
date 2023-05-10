@@ -28,9 +28,7 @@ const Dashboard =(props) => {
         // User is signed in, see docs for a list of available properties
         if(user.displayName){
          setProfileName('@' + user.displayName);
-         getProfileImage();
-         console.log('loaded');
-         
+         getProfileImage();         
         } else{
             setProfileName('Anon');
         }
@@ -43,18 +41,17 @@ const Dashboard =(props) => {
 }
 
    
-
-    const displayPostForm= ()=>{
-            if (profileName !== 'Anon' && profileName !== 'Guest'){
-                console.log('post form activated');
-                const postForm = document.querySelector('.post-form');
-                postForm.style.display='flex';
-                const textArea = document.querySelector('#post-text');
-                textArea.value='';
-                console.log(userData);
-               
-            }
+const displayPostForm= ()=>{
+    if (profileName !== 'Anon' && profileName !== 'Guest'){
+        //alert('post form activated');
+        const postForm = document.querySelector('.post-form');
+        postForm.style.display='flex';
+        const textArea = document.querySelector('#post-text');
+        textArea.value='';
+        const profileTab = document.querySelector('.app-tab');
+        profileTab.style.background='rgb(100,100,100,0.5)';
     }
+}
 
     const getProfileImage = ()=> {   
         getDownloadURL(sRef(storage, `images/ProfilePicture-${userData.uid}`))
@@ -68,15 +65,13 @@ const Dashboard =(props) => {
         imgDash.setAttribute('src', null);
         imgDash.setAttribute('src', url);
         imgDash.style.display='block';
-        console.log(url); 
         //sRef.off();
      })
      .catch((error) => {
       //alert('load img error');
-       
      });
-
    }
+   
 
    authFunc();
 
@@ -113,7 +108,11 @@ const Dashboard =(props) => {
                     exit_to_app
                     </span>
                     Sign out</Link> 
+                <div onClick={displayPostForm} className='class-link-newpost'>
+                    <div id='new-twit'>New</div>
+                </div>
             </nav>
+            
             <div className='post-cont'>
                 
             </div>

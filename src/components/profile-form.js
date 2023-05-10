@@ -51,7 +51,6 @@ function writeProfileDesc(userId, name, textData) {
         const descriptionData = descInput.value ? descInput.value : '';
 
         writeProfileDesc(props.userData.uid , props.userData.displayName, descriptionData);  
-        console.log(props.userData);
         //close form
        closeProfileForm();
        // update alert on pop Up
