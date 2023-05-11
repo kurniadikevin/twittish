@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.dc215ef3.css",
+    "main.js": "/static/js/main.bbe3a803.js",
+    "static/media/nathan-dumlao-87r__24oABU-unsplash .jpg": "/static/media/nathan-dumlao-87r__24oABU-unsplash .a52ee703b7ab48f5e7ca.jpg",
+    "index.html": "/index.html",
+    "main.dc215ef3.css.map": "/static/css/main.dc215ef3.css.map",
+    "main.bbe3a803.js.map": "/static/js/main.bbe3a803.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc215ef3.css",
+    "static/js/main.bbe3a803.js"
+  ]
+}
