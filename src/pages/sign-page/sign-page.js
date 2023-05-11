@@ -7,8 +7,6 @@ import { PopUpAlert } from '../../components/popup/popup';
 
 const SignPage = ()=> {
 
-   
-
  //sign up function   
  const signUpNewUser = () => {
     let email = document.querySelector('#user-email').value;
